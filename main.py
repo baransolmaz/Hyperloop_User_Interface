@@ -2,7 +2,7 @@
 from tkinter import *
 # import math
 # import folium
-# from PIL import Image, ImageTk
+#from PIL import Image, ImageTk
 # import os
 # import serial
 # import threading as thr
@@ -19,25 +19,17 @@ class App:
         self.window.title("ALFA-ETA-HYPER")  # Pencere ismi
         self.window.iconname("ALFA-ETA-HYPER")
         self.window.config(background="white")
-        # photo = PhotoImage(file="Images/logo.png")  # app icon
-        # self.window.iconphoto("false", photo)
+        photo = PhotoImage(file="Images/logo.png")  # app icon
+        self.window.iconphoto("false", photo)
         # self.speedometer = Speedometer(self)
         # self.mainBattery = Battery(self, "Main", 0, 525)
-        # x = 80;y = 130
-        # self.allBatteries=[[0 for j in range(5)] for i in range(4)]
-        # for i in range(4):
-        #     for j in range(5):
-        #         if ((i*5)+j)<18:
-        #             self.allBatteries[i][j] = Battery(self, (i*5+j), (x*j)+1, (y*i)+1)
         # self.signals = Signals(self)
         # self.location = Location(self)
-        # self.mapThread = thr.Thread(
-        #     target=self.location.updateLoc, args=[self,self.location])
         # self.logo = Logo(self)
         # self.steer = Steering(self)
         # self.readData = thr.Thread(target=self.readAndParseDATA)
         # self.readData.start()
-        # self.mapThread.start()
+
         
     # def connectUSB(self):
     #     ser = serial.Serial(
