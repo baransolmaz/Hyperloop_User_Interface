@@ -21,11 +21,11 @@ class App:
         self.window.config(background="white")
         photo = PhotoImage(file="Images/logo.png")  # app icon
         self.window.iconphoto("false", photo)
-        # self.speedometer = Speedometer(self)
-        # self.mainBattery = Battery(self, "Main", 0, 525)
+        self.pressure = Pressure(self)
+        self.temperature = Temperature(self)
         # self.signals = Signals(self)
         # self.location = Location(self)
-        # self.logo = Logo(self)
+        self.logo = Logo(self)
         # self.steer = Steering(self)
         # self.readData = thr.Thread(target=self.readAndParseDATA)
         # self.readData.start()
@@ -67,18 +67,16 @@ class App:
     #                 if paket == '3':# direksiyon + konum
     #                     paket3(self, datas[1])
     #             self.serialCon.close()
-# class Logo:
-#     def __init__(self, obj):
-#         self.logoCanvas = Canvas(
-#             obj.window, height=100, width=140, background="blue", highlightthickness=0)
-#         self.photo = PhotoImage(file="Images/logo.png")
-#         self.logoCanvas.create_image(75, 50, image=self.photo, anchor=CENTER)
-#         self.logoCanvas.place(x=450, y=340)
-#         self.numberCanvas = Canvas(
-#             obj.window, height=100, width=150, background="white", highlightthickness=0)
-#         self.numberPhoto = PhotoImage(file="Images/44.png")
-#         self.numberCanvas.create_image(75, 50, image=self.numberPhoto, anchor=CENTER)
-#         self.numberCanvas.place(x=275, y=410)
+class Logo:
+    def __init__(self, obj):
+        self.logoCanvas = Canvas(obj.window, height=145, width=145, background="blue", highlightthickness=3)
+        self.photo = PhotoImage(file="Images/logo.png")
+        self.logoCanvas.create_image(75,74, image=self.photo, anchor=CENTER)
+        self.logoCanvas.place(x=450, y=340)
+        #self.numberCanvas = Canvas(obj.window, height=100, width=150, background="white", highlightthickness=0)
+        # self.numberPhoto = PhotoImage(file="Images/44.png")
+        # self.numberCanvas.create_image(75, 50, image=self.numberPhoto, anchor=CENTER)
+        # self.numberCanvas.place(x=275, y=410)
 # class Signals:
 #     def __init__(self, obj):
 #         # Current,Voltage,Engine,Left,Right,Tempereture
@@ -118,39 +116,35 @@ class App:
 #                 self.voltageCanvas.place(x=150, rely=1, anchor=S)
 #                 self.voltageTxt = self.voltageCanvas.create_text(
 #                     25, 65, fill="black", text="0", font=('Helvetica 16 bold'))
-#     class DirectionSignals(object):
-#         def __init__(self, obj):
-#             self.leftsignal = self.LeftSignal(obj)
-#             self.rightsignal = self.RightSignal(obj)
-#         class LeftSignal(object):
-#             def __init__(self, obj):
-#                 self.leftSignalImage = [PhotoImage(
-#                     file='Images/left_off.png'), PhotoImage(file='Images/left_on.png')]
-#                 self.leftCanvas = Canvas(
-#                     obj.window, height=50, width=49, background="red", highlightthickness=1)
-#                 self.leftCanvas.create_image(
-#                     25, 25, image=self.leftSignalImage[0], anchor=CENTER)
-#                 self.leftCanvas.place(x=100, y=575, anchor=S)
-#         class RightSignal(object):
-#             def __init__(self, obj):
-#                 self.rightSignalImage = [PhotoImage(
-#                     file='Images/right_off.png'), PhotoImage(file='Images/right_on.png')]
-#                 self.rightCanvas = Canvas(
-#                     obj.window, height=50, width=49, background="yellow", highlightthickness=1)
-#                 self.rightCanvas.create_image(
-#                     25, 25, image=self.rightSignalImage[0], anchor=CENTER)
-#                 self.rightCanvas.place(x=150, y=575, anchor=S)
-#     class ThermoSignal(object):
-#         def __init__(self, obj):
-#             self.thermometer = [PhotoImage(
-#                 file='Images/thermometer_ok.png'), PhotoImage(file='Images/thermometer_bad.png')]
-#             self.thermoCanvas = Canvas(
-#                 obj.window, height=75, width=49, background="blue", highlightthickness=1)
-#             self.thermoCanvas.create_image(25, 26, image=self.thermometer[0], anchor=CENTER)
-#             self.thermoCanvas.place(x=200, rely=1, anchor=S)
-#             self.thermoTxt = self.thermoCanvas.create_text(
-#                 25, 65, fill="black", text="0", font=('Helvetica 15 bold'))
-   
+class Pressure:
+    def __init__(self, obj):
+        self.pressureCanvas = Canvas(obj.window, height=25, width=300,background="white", highlightthickness=1)
+        self.pressureCanvas.place(x=0, y=0)
+        self._X_ = self.pressureCanvas.create_text(60, 15, fill="black", text="Pressure: ", font=('Helvetica 16 bold'))
+        self._X_Loc = self.pressureCanvas.create_text(200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        # self.imageCanvas = Canvas(obj.window, height=300, width=300,background="red", highlightthickness=1)
+        # self.imageCanvas.place(x=400, y=0)
+        
+
+class Temperature:
+    def __init__(self, obj):
+        # self.thermometer = [PhotoImage(
+        #     file='Images/thermometer_ok.png'), PhotoImage(file='Images/thermometer_bad.png')]
+        self.p1Canvas = Canvas(obj.window, height=25, width=300, background="white", highlightthickness=1)
+        # self.p1Canvas.create_image(25, 26, image=self.temperaturemeter[0], anchor=CENTER)
+        self.p1 = self.p1Canvas.create_text(
+            100, 15, fill="black", text="P1 - Temperature: ", font=('Helvetica 16 bold'))
+        self.p1 = self.p1Canvas.create_text(200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.p1Canvas.place(x=0, y=25)
+        self.p2Canvas = Canvas(
+            obj.window, height=25, width=300, background="white", highlightthickness=1)
+        # self.p2Canvas.create_image(25, 26, image=self.temperaturemeter[0], anchor=CENTER)
+        self.p1 = self.p2Canvas.create_text(
+            100, 15, fill="black", text="P2 - Temperature: ", font=('Helvetica 16 bold'))
+        self.p1 = self.p2Canvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.p2Canvas.place(x=0, y=50)
+        
 # class Speedometer:
 #     def __init__(self, obj):
 #         #SPEED Canvas
