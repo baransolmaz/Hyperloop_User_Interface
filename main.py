@@ -24,9 +24,10 @@ class App:
         self.pressure = Pressure(self)
         self.temperature = Temperature(self)
         self.speed = Speed(self)
-        # self.location = Location(self)
+        self.acc = Acceleration(self)
+        self.location = Location(self)
         self.logo = Logo(self)
-        # self.steer = Steering(self)
+        self.maneuver = Maneuver(self)
         # self.readData = thr.Thread(target=self.readAndParseDATA)
         # self.readData.start()
 
@@ -77,45 +78,6 @@ class Logo:
         # self.numberPhoto = PhotoImage(file="Images/44.png")
         # self.numberCanvas.create_image(75, 50, image=self.numberPhoto, anchor=CENTER)
         # self.numberCanvas.place(x=275, y=410)
-# class Signals:
-#     def __init__(self, obj):
-#         # Current,Voltage,Engine,Left,Right,Tempereture
-#         self.allSignals = [0, 0, 0, 0, 0, 0]
-#         self.electroSignals = self.ElectroSignals(obj)
-#         self.engineSignal = self.EngineSignal(obj)
-#         self.directionSignals = self.DirectionSignals(obj)
-#         self.thermoSignal = self.ThermoSignal(obj)
-#         self.leakageSignal = self.LeakageSignal(obj)
-#     class EngineSignal(object):
-#         def __init__(self, obj):
-#             self.engineImage = [PhotoImage(
-#                 file='Images/engine_ok.png'), PhotoImage(file='Images/engine_bad.png')]
-#             self.engineCanvas = Canvas(
-#                 obj.window, height=50, width=49, background="blue", highlightthickness=1)
-#             self.engineCanvas.create_image(
-#                 25, 25, image=self.engineImage[0], anchor=CENTER)
-#             self.engineCanvas.place(x=200, y=575, anchor=S)
-#     class ElectroSignals(object):
-#         def __init__(self, obj):
-#             self.electroSignal = [PhotoImage(file='Images/A.png'), PhotoImage(file='Images/V.png')]
-#             self.current = self.Current(obj, self.electroSignal[0])
-#             self.voltage = self.Voltage(obj, self.electroSignal[1])
-#         class Current(object):
-#             def __init__(self, obj, image):
-#                 self.currentCanvas = Canvas(
-#                     obj.window, height=75, width=49, background="red", highlightthickness=1)
-#                 self.currentCanvas.create_image(25, 25, image=image, anchor=CENTER)
-#                 self.currentCanvas.place(x=100, rely=1, anchor=S)
-#                 self.currentTxt = self.currentCanvas.create_text(
-#                     25, 65, fill="black", text="0", font=('Helvetica 16 bold'))
-#         class Voltage(object):
-#             def __init__(self, obj, image):
-#                 self.voltageCanvas = Canvas(
-#                     obj.window, height=75, width=49, background="yellow", highlightthickness=1)
-#                 self.voltageCanvas.create_image(25, 25, image=image, anchor=CENTER)
-#                 self.voltageCanvas.place(x=150, rely=1, anchor=S)
-#                 self.voltageTxt = self.voltageCanvas.create_text(
-#                     25, 65, fill="black", text="0", font=('Helvetica 16 bold'))
 class Pressure:
     def __init__(self, obj):
         self.pressureCanvas = Canvas(obj.window, height=25, width=300,background="white", highlightthickness=1)
@@ -124,7 +86,6 @@ class Pressure:
         self._X_Loc = self.pressureCanvas.create_text(200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
         # self.imageCanvas = Canvas(obj.window, height=300, width=300,background="red", highlightthickness=1)
         # self.imageCanvas.place(x=400, y=0)
-        
 
 class Temperature:
     def __init__(self, obj):
@@ -179,25 +140,79 @@ class Speed:
         # self.angle = 90
         # self.speedTxt = self.speedCanvas.create_text(
         #     100, 65, fill="black", text="0", font=('Helvetica 20 bold'))
-# class Battery:
-#     def __init__(self, obj, name, _x_=100, _y_=100):
-#         #Battery Canvas
-#         self.batteryCanvas = Canvas(obj.window, height=125, width=74,
-#                                     background="white", highlightthickness=1)
-#         self.batteryImages = [PhotoImage(
-#             file='Images/normalbattery.png'), PhotoImage(file='Images/chargbatery.png')]
-#         #Battery Charge
-#         self.batteryCharge = self.batteryCanvas.create_rectangle(
-#             69, 122, 5, 122, fill="#A10000")
-#         self.batteryImage = self.batteryCanvas.create_image(
-#             0, 2, image=self.batteryImages[0], anchor=NW)
-#         self.batteryCanvas.place(x=_x_, y=_y_)
-#         self.batteryNo=name
-#         self.batteryName = self.batteryCanvas.create_text(
-#             37.5, 35, fill="black", text=name, font=('Helvetica 14 roman'))
-#         self.batteryTxt = self.batteryCanvas.create_text(
-#             37.5, 110, fill="black", text="0", font=('Helvetica 16 bold'))
-#         self.charge = 0
+
+class Acceleration:
+    def __init__(self, obj):
+        self.xCanvas = Canvas(obj.window, height=25, width=300,
+                              background="white", highlightthickness=1)
+        self.xCanvas.place(x=0, y=150)
+        self._X_ = self.xCanvas.create_text(
+            60, 15, fill="black", text="X-Acc: ", font=('Helvetica 16 bold'))
+        self._X_Acc = self.xCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.yCanvas = Canvas(obj.window, height=25, width=300,
+                              background="white", highlightthickness=1)
+        self.yCanvas.place(x=0, y=175)
+        self._Y_ = self.yCanvas.create_text(
+            60, 15, fill="black", text="Y-Acc: ", font=('Helvetica 16 bold'))
+        self._Y_Acc = self.yCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.zCanvas = Canvas(obj.window, height=25, width=300,
+                              background="white", highlightthickness=1)
+        self.zCanvas.place(x=0, y=200)
+        self._Z_ = self.zCanvas.create_text(
+            60, 15, fill="black", text="Z-Acc: ", font=('Helvetica 16 bold'))
+        self._Z_Acc = self.zCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+class Location:
+    def __init__(self, obj):
+        self.xCanvas = Canvas(obj.window, height=25, width=300,
+                              background="white", highlightthickness=1)
+        self.xCanvas.place(x=0, y=225)
+        self._X_ = self.xCanvas.create_text(
+            60, 15, fill="black", text="X-Loc: ", font=('Helvetica 16 bold'))
+        self._X_Loc = self.xCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.yCanvas = Canvas(obj.window, height=25, width=300,
+                              background="white", highlightthickness=1)
+        self.yCanvas.place(x=0, y=250)
+        self._Y_ = self.yCanvas.create_text(
+            60, 15, fill="black", text="Y-Loc: ", font=('Helvetica 16 bold'))
+        self._Y_Loc = self.yCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.zCanvas = Canvas(obj.window, height=25, width=300,
+                              background="white", highlightthickness=1)
+        self.zCanvas.place(x=0, y=275)
+        self._Z_ = self.zCanvas.create_text(
+            60, 15, fill="black", text="Z-Loc: ", font=('Helvetica 16 bold'))
+        self._Z_Loc = self.zCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+class Maneuver:
+    def __init__(self, obj):
+        #roll, pitch ve yaw
+        self.pitchCanvas = Canvas(obj.window, height=25, width=300,
+                                background="white", highlightthickness=1)
+        self.pitchCanvas.place(x=0, y=225)
+        self._Pitch_ = self.pitchCanvas.create_text(
+            60, 15, fill="black", text="Pitch: ", font=('Helvetica 16 bold'))
+        self._Pitch_Deg = self.pitchCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.rollCanvas = Canvas(obj.window, height=25, width=300,
+                                background="white", highlightthickness=1)
+        self.rollCanvas.place(x=0, y=250)
+        self._Roll_ = self.rollCanvas.create_text(
+            60, 15, fill="black", text="Roll: ", font=('Helvetica 16 bold'))
+        self._Roll_Deg = self.rollCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.yawCanvas = Canvas(obj.window, height=25, width=300,
+                                background="white", highlightthickness=1)
+        self.yawCanvas.place(x=0, y=275)
+        self._Yaw_ = self.yawCanvas.create_text(
+            60, 15, fill="black", text="Yaw: ", font=('Helvetica 16 bold'))
+        self._Yaw_Deg = self.yawCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        
+        
 # class Location:
 #     def __init__(self, obj):
 #         self.location = [40.806649, 29.359085]  # x,y
@@ -224,29 +239,6 @@ class Speed:
 #         self._Y_Loc = self.locationCanvas.create_text(
 #             180, 15, fill="black", text=str(locs[1]), font=('Helvetica 14 roman'), anchor=W)
 #         obj.window.update()
-# class Steering:
-#     def __init__(self, obj):
-#         self.steerStrait = Image.open("Images/direksiyon.png")
-#         self.steerImage = ImageTk.PhotoImage(self.steerStrait)
-#         self.steerCanvas = Canvas(
-#             obj.window, height=196, width=200, background="white", highlightthickness=0)
-#         self.steer = self.steerCanvas.create_image(
-#             100, 102, image=self.steerImage, anchor=CENTER)
-#         self.steerCanvas.place(relx=1, rely=1, anchor=SE)
-#         self.steerAngle = 0
-# def changeSteer(obj):  # + sol (- sag)
-#     for i in range(0, 270):
-#         updateSteer(obj, i)
-#     time.sleep(1)
-#     for i in range(270, -540, -1):
-#         updateSteer(obj, i)
-# def updateSteer(obj, angle=0):
-#     obj.steer.steerCanvas.delete(obj.steer.steer)
-#     obj.steer.steerImage = ImageTk.PhotoImage(
-#         obj.steer.steerStrait.rotate(angle))
-#     obj.steer.steer = obj.steer.steerCanvas.create_image(
-#         100, 102, image=obj.steer.steerImage, anchor=CENTER)
-#     obj.window.update()
 # def changeSpeed(obj):
 #     for i in range(0, 80):
 #         updateSpeed(obj, i)
@@ -256,19 +248,6 @@ class Speed:
 #         updateSpeed(obj, i)
 #     for i in range(100, 0, -1):
 #         updateSpeed(obj, i)
-# def changeBattery(obj):
-#     for i in range(0, 80):
-#         updateBattery(obj.allBatteries[0][4], i)
-#         obj.window.update()
-#     for i in range(80, 40, -1):
-#         updateBattery(obj.allBatteries[0][4], i)
-#         obj.window.update()
-#     for i in range(40, 100):
-#         updateBattery(obj.allBatteries[0][4], i)
-#         obj.window.update()
-#     for i in range(100, 0, -1):
-#         updateBattery(obj.allBatteries[0][4], i)
-#         obj.window.update()
 # def changeLoc(obj):
 #     updateLoc(obj, [40.807712, 29.355991])
 # def updateLoc(obj,loc):
@@ -286,27 +265,7 @@ class Speed:
 #         obj.speedometer.speedArrow = obj.speedometer.speedCanvas.create_line(
 #             100, 100, 0 + x, y, arrow=LAST, width=5, fill="blue")
 #     obj.window.update()
-# def updateBattery(obj, charge=0):
-#     if (obj.charge > 0) or (obj.charge < 100):
-#         obj.batteryCanvas.delete(obj.batteryCharge)
-#         obj.batteryCanvas.delete(obj.batteryTxt)
-#         obj.batteryCanvas.delete(obj.batteryImage)
-#         obj.batteryCanvas.delete(obj.batteryName)
-#         x = 122 - int(charge*1.04)
-#         color = colorPicker(charge)
-#         obj.batteryCharge = obj.batteryCanvas.create_rectangle(
-#             69, 122, 5, x, fill=color)
-#         if charge >= obj.charge:
-#             obj.batteryImage = obj.batteryCanvas.create_image(
-#                 0, 2, image=obj.batteryImages[1], anchor=NW)
-#         else:
-#             obj.batteryImage = obj.batteryCanvas.create_image(
-#                 0, 2, image=obj.batteryImages[0], anchor=NW)
-#         obj.charge = charge
-#         obj.batteryTxt = obj.batteryCanvas.create_text(
-#             37.5, 110, fill="black", text=str(obj.charge), font=('Helvetica 16 bold'))
-#         obj.batteryName = obj.batteryCanvas.create_text(
-#             37.5, 35, fill="black", text=obj.batteryNo , font=('Helvetica 14 roman'))
+
 # def colorPicker(charge):
 #     if charge < 20:
 #         return "#A10000"
@@ -318,53 +277,6 @@ class Speed:
 #         return "#AAB900"
 #     else:
 #         return "#71B400"
-# def changeSig(obj):
-#     time.sleep(0.5)
-#     changeSignals(obj, [3, 46, 0, 1, 1, 55, 0])
-#     time.sleep(0.5)
-#     changeSignals(obj, [10, 15, 0, 0, 0, 20, 1])
-#     time.sleep(0.5)
-#     changeSignals(obj, [36, 54, 1, 0, 1, 100, 1])
-#     time.sleep(0.5)
-#     changeSignals(obj, [0, 0, 0, 1, 0, 9, 0])
-#     time.sleep(0.5)
-#     changeSignals(obj, [99, 99, 1, 1, 1, 45, 0])
-#     time.sleep(0.5)
-#     changeSignals(obj, [0, 0, 0, 0, 0, 0, 1])
-# def changeSignals(obj, signals):
-#     changeElectroSignal(obj.signals.electroSignals, signals[0:2])
-#     changeEngineSignal(obj.signals.engineSignal, signals[2])
-#     changeDirectionSignal(obj.signals.directionSignals, signals[3:5])
-#     changeThermoSignal(obj.signals.thermoSignal, signals[5])
-#     changeLeakageSignal(obj.signals.leakageSignal, signals[6])
-#     obj.window.update()
-# def changeElectroSignal(obj, signals):
-#     obj.current.currentCanvas.delete(obj.current.currentTxt)
-#     obj.voltage.voltageCanvas.delete(obj.voltage.voltageTxt)
-#     obj.current.currentTxt = obj.current.currentCanvas.create_text(
-#         25, 65, fill="black", text=str(signals[0]), font=('Helvetica 16 bold'))
-#     obj.voltage.voltageTxt = obj.voltage.voltageCanvas.create_text(
-#         25, 65, fill="black", text=str(signals[1]), font=('Helvetica 16 bold'))
-# def changeEngineSignal(obj, signal):
-#     obj.engineCanvas.create_image(
-#         25, 25, image=obj.engineImage[signal], anchor=CENTER)
-# def changeDirectionSignal(obj, signals):
-#     obj.leftsignal.leftCanvas.create_image(
-#         25, 25, image=obj.leftsignal.leftSignalImage[signals[0]], anchor=CENTER)
-#     obj.rightsignal.rightCanvas.create_image(
-#         25, 25, image=obj.rightsignal.rightSignalImage[signals[1]], anchor=CENTER)
-# def changeThermoSignal(obj, signal):
-#     img = obj.thermometer[0]
-#     if signal > 40:
-#         img = obj.thermometer[1]
-#     obj.thermoCanvas.create_image(
-#         25, 26, image=img, anchor=CENTER)
-#     obj.thermoCanvas.delete(obj.thermoTxt)
-#     obj.thermoTxt = obj.thermoCanvas.create_text(
-#         25, 65, fill="black", text=str(signal), font=('Helvetica 15 bold'))
-# def changeLeakageSignal(obj, signal):
-#     obj.leakageCanvas.delete(obj.img)
-#     obj.img = obj.leakageCanvas.create_image(25, 25, image=obj.leakageImage[signal], anchor=CENTER)
 # def exit_func(obj):
 #     setFlag(1)
 #     obj.readData.join()
