@@ -24,7 +24,8 @@ class App:
         self.pressure = Pressure(self)
         self.temperature = Temperature(self)
         self.speed = Speed(self)
-        # self.location = Location(self)
+        self.acc = Acceleration(self)
+        self.location = Location(self)
         self.logo = Logo(self)
         # self.steer = Steering(self)
         # self.readData = thr.Thread(target=self.readAndParseDATA)
@@ -179,6 +180,54 @@ class Speed:
         # self.angle = 90
         # self.speedTxt = self.speedCanvas.create_text(
         #     100, 65, fill="black", text="0", font=('Helvetica 20 bold'))
+
+class Acceleration:
+    def __init__(self, obj):
+        #SPEED Canvas
+        self.xCanvas = Canvas(obj.window, height=25, width=300,
+                              background="white", highlightthickness=1)
+        self.xCanvas.place(x=0, y=150)
+        self._X_ = self.xCanvas.create_text(
+            60, 15, fill="black", text="X-Acc: ", font=('Helvetica 16 bold'))
+        self._X_Acc = self.xCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.yCanvas = Canvas(obj.window, height=25, width=300,
+                              background="white", highlightthickness=1)
+        self.yCanvas.place(x=0, y=175)
+        self._Y_ = self.yCanvas.create_text(
+            60, 15, fill="black", text="Y-Acc: ", font=('Helvetica 16 bold'))
+        self._Y_Acc = self.yCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.zCanvas = Canvas(obj.window, height=25, width=300,
+                              background="white", highlightthickness=1)
+        self.zCanvas.place(x=0, y=200)
+        self._Z_ = self.zCanvas.create_text(
+            60, 15, fill="black", text="Z-Acc: ", font=('Helvetica 16 bold'))
+        self._Z_Acc = self.zCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+class Location:
+    def __init__(self, obj):
+        self.xCanvas = Canvas(obj.window, height=25, width=300,
+                              background="white", highlightthickness=1)
+        self.xCanvas.place(x=0, y=225)
+        self._X_ = self.xCanvas.create_text(
+            60, 15, fill="black", text="X-Loc: ", font=('Helvetica 16 bold'))
+        self._X_Loc = self.xCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.yCanvas = Canvas(obj.window, height=25, width=300,
+                              background="white", highlightthickness=1)
+        self.yCanvas.place(x=0, y=250)
+        self._Y_ = self.yCanvas.create_text(
+            60, 15, fill="black", text="Y-Loc: ", font=('Helvetica 16 bold'))
+        self._Y_Loc = self.yCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.zCanvas = Canvas(obj.window, height=25, width=300,
+                              background="white", highlightthickness=1)
+        self.zCanvas.place(x=0, y=275)
+        self._Z_ = self.zCanvas.create_text(
+            60, 15, fill="black", text="Z-Loc: ", font=('Helvetica 16 bold'))
+        self._Z_Loc = self.zCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
 # class Battery:
 #     def __init__(self, obj, name, _x_=100, _y_=100):
 #         #Battery Canvas
