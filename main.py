@@ -23,7 +23,7 @@ class App:
         self.window.iconphoto("false", photo)
         self.pressure = Pressure(self)
         self.temperature = Temperature(self)
-        # self.signals = Signals(self)
+        self.speed = Speed(self)
         # self.location = Location(self)
         self.logo = Logo(self)
         # self.steer = Steering(self)
@@ -145,24 +145,40 @@ class Temperature:
             200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
         self.p2Canvas.place(x=0, y=50)
         
-# class Speedometer:
-#     def __init__(self, obj):
-#         #SPEED Canvas
-#         self.speedCanvas = Canvas(
-#             obj.window, height=100, width=200, background="white", highlightthickness=0)
-#         self.speedometer = PhotoImage(file='Images/speedometer.png')
-#         self.speedCanvas.create_image(
-#             103, 52, image=self.speedometer, anchor=CENTER)
-#         coord = 2, 200, 200, 2
-#         self.speedCanvas.create_arc(coord, start=0, extent=180, width=2)
-#         self.speedCanvas.pack()
-#         self.speedCanvas.place(x=375, rely=1, anchor=S)
-#         #SPEED Arrow
-#         self.speedArrow = self.speedCanvas.create_line(
-#             100, 100, 0, 100, arrow=LAST, width=5, fill="blue")
-#         self.angle = 90
-#         self.speedTxt = self.speedCanvas.create_text(
-#             100, 65, fill="black", text="0", font=('Helvetica 20 bold'))
+class Speed:
+    def __init__(self, obj):
+        #SPEED Canvas
+        self.xCanvas = Canvas(obj.window, height=25, width=300, background="white", highlightthickness=1)
+        self.xCanvas.place(x=0, y=75)
+        self._X_ = self.xCanvas.create_text(60, 15, fill="black", text="X-Speed: ", font=('Helvetica 16 bold'))
+        self._X_Speed = self.xCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.yCanvas = Canvas(obj.window, height=25, width=300,
+                              background="white", highlightthickness=1)
+        self.yCanvas.place(x=0, y=100)
+        self._Y_ = self.yCanvas.create_text(60, 15, fill="black", text="Y-Speed: ", font=('Helvetica 16 bold'))
+        self._Y_Speed = self.yCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.zCanvas = Canvas(obj.window, height=25, width=300,
+                              background="white", highlightthickness=1)
+        self.zCanvas.place(x=0, y=125)
+        self._Z_ = self.zCanvas.create_text(
+            60, 15, fill="black", text="Z-Speed: ", font=('Helvetica 16 bold'))
+        self._Z_Speed = self.zCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        # self.imageCanvas = Canvas(obj.window, height=300, width=300,background="red", highlightthickness=1)
+        # self.imageCanvas.place(x=400, y=0)
+        # self.speedometer = PhotoImage(file='Images/speedometer.png')
+        # self.speedCanvas.create_image(
+        #     103, 52, image=self.speedometer, anchor=CENTER)
+        # coord = 2, 200, 200, 2
+        # self.speedCanvas.create_arc(coord, start=0, extent=180, width=2)
+        #SPEED Arrow
+        # self.speedArrow = self.speedCanvas.create_line(
+        #     100, 100, 0, 100, arrow=LAST, width=5, fill="blue")
+        # self.angle = 90
+        # self.speedTxt = self.speedCanvas.create_text(
+        #     100, 65, fill="black", text="0", font=('Helvetica 20 bold'))
 # class Battery:
 #     def __init__(self, obj, name, _x_=100, _y_=100):
 #         #Battery Canvas
