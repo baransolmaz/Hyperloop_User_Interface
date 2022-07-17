@@ -14,7 +14,7 @@ from tkinter import *
 class App:
     def __init__(self):
         self.window = Tk()
-        self.window.geometry("705x650")  # Screen Size
+        self.window.geometry("575x475")  # Screen Size
         self.window.resizable(0, 0)
         self.window.title("ALFA-ETA-HYPER")  # Pencere ismi
         self.window.iconname("ALFA-ETA-HYPER")
@@ -77,72 +77,77 @@ class Logo:
         self.logoCanvas.place(x=350, y=250)
 class Pressure:
     def __init__(self, obj):
-        self.pressureCanvas = Canvas(obj.window, height=25, width=300,background="white", highlightthickness=1)
-        self.pressureCanvas.place(x=0, y=0)
-        self.p_txt = self.pressureCanvas.create_text(60, 15, fill="black", text="Pressure: ", font=('Helvetica 16 bold'))
-        self.value_txt = self.pressureCanvas.create_text(200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
-        # self.imageCanvas = Canvas(obj.window, height=300, width=300,background="red", highlightthickness=1)
-        # self.imageCanvas.place(x=400, y=0)
-
+        self.pressureCanvas = Canvas(obj.window, height=150, width=150,background="white", highlightthickness=1)
+        self.pressureCanvas.place(x=200, rely=0,anchor=NW)
+        self.photo = PhotoImage(file="Images/press.png")
+        self.pressureCanvas.create_image(0, 0, image=self.photo, anchor=NW)
+        
+        self.txtCanvas = Canvas(obj.window, height=25, width=150, background="white", highlightthickness=1)
+        self.p_txt = self.txtCanvas.create_text(60, 15, fill="black", text="Pressure: ", font=('Helvetica 14 bold'))
+        self.value_txt = self.txtCanvas.create_text(120, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.txtCanvas.place(x=200, y=150,anchor=NW)
 class Power:
     def __init__(self, obj):
         self.powerCanvas = Canvas(obj.window, height=150, width=140, background="white", highlightthickness=1)
-        self.powerCanvas.place(x=350, rely=1,anchor=SW)
+        self.powerCanvas.place(x=271, rely=1,anchor=SW)
         self.photo = PhotoImage(file="Images/bolt.png")
         self.powerCanvas.create_image(25, 0, image=self.photo, anchor=NW)
-        self.p_txt = self.powerCanvas.create_text(10, 90, fill="black", text="      Power\nConsumption", font=('Helvetica 14 bold'),anchor=NW)
-        self.value_txt = self.powerCanvas.create_text(70, 140, fill="black", text="0", font=('Helvetica 14 roman'),anchor=CENTER)
+        self.p_txt = self.powerCanvas.create_text(10, 90, fill="black", text="      Power\nConsumption", font=('Helvetica 13 bold'),anchor=NW)
+        
+        self.pCanvas = Canvas(obj.window, height=25, width=140, background="white", highlightthickness=1)
+        self.pCanvas.place(x=271, rely=1, anchor=SW)
+        self.value_txt = self.pCanvas.create_text(70,16, fill="black", text="0", font=('Helvetica 14 roman'), anchor=CENTER)
 class Temperature:
     def __init__(self, obj):
         self.temperatureCanvas = Canvas(obj.window, height=120, width=120, background="white", highlightthickness=1)
-        self.temperatureCanvas.place(x=200, y=600, anchor=SW)
+        self.temperatureCanvas.place(x=150, y=425, anchor=SW)
         self.photo = PhotoImage(file="Images/thermo.png")
         self.temperatureCanvas.create_image(0, 0, image=self.photo, anchor=NW)
         
         self.p1Canvas = Canvas(obj.window, height=25, width=120, background="white", highlightthickness=1)
         self.p1 = self.p1Canvas.create_text(40, 15, fill="black", text="P1: ", font=('Helvetica 14 bold'))
         self.p1_val = self.p1Canvas.create_text(80, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
-        self.p1Canvas.place(x=200, y=625, anchor=SW)
+        self.p1Canvas.place(x=150, y=450, anchor=SW)
         
         self.p2Canvas = Canvas(obj.window, height=25, width=120, background="white", highlightthickness=1)
         self.p2 = self.p2Canvas.create_text(40, 15, fill="black", text="P2: ", font=('Helvetica 14 bold'))
         self.p2_val = self.p2Canvas.create_text(80, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
-        self.p2Canvas.place(x=200, rely=1, anchor=SW)
+        self.p2Canvas.place(x=150, rely=1, anchor=SW)
 class Speed:
     def __init__(self, obj):
         self.speedCanvas = Canvas(obj.window, height=140, width=160, background="white", highlightthickness=1)
-        self.speedCanvas.place(relx=0, y=200, anchor=NW)
+        self.speedCanvas.place(relx=0, rely=0, anchor=NW)
         self.photo = PhotoImage(file="Images/3d_acc.png")
         self.speedCanvas.create_image(0, 0, image=self.photo, anchor=NW)
         
         self.xCanvas = Canvas(obj.window, height=25, width=160, background="white", highlightthickness=1)
-        self.xCanvas.place(x=0, y=340)
+        self.xCanvas.place(x=0, y=140)
         self._X_ = self.xCanvas.create_text(60, 15, fill="black", text="X-Speed: ", font=('Helvetica 14 bold'))
         self._X_Speed = self.xCanvas.create_text(120, 5, fill="black", text="0", font=('Helvetica 14 roman'), anchor=NW)
         
         self.yCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
-        self.yCanvas.place(x=0, y=365)
+        self.yCanvas.place(x=0, y=165)
         self._Y_ = self.yCanvas.create_text(60, 15, fill="black", text="Y-Speed: ", font=('Helvetica 14 bold'))
         self._Y_Speed = self.yCanvas.create_text(120, 5, fill="black", text="0", font=('Helvetica 14 roman'), anchor=NW)
         
         self.zCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
-        self.zCanvas.place(x=0, y=390)
+        self.zCanvas.place(x=0, y=190)
         self._Z_ = self.zCanvas.create_text(60, 15, fill="black", text="Z-Speed: ", font=('Helvetica 14 bold'))
         self._Z_Speed = self.zCanvas.create_text(120, 5, fill="black", text="0", font=('Helvetica 14 roman'), anchor=NW)
 class Acceleration:
     def __init__(self, obj):
         self.accelerationCanvas = Canvas(obj.window, height=140, width=160, background="white", highlightthickness=1)
-        self.accelerationCanvas.place(relx=0, y=575,anchor=SW)
+        self.accelerationCanvas.place(relx=0, y=400,anchor=SW)
         self.photo = PhotoImage(file="Images/3d_acc.png")
         self.accelerationCanvas.create_image(0, 0, image=self.photo, anchor=NW)
         ###
         self.xCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
-        self.xCanvas.place(relx=0, y=600, anchor=SW)
+        self.xCanvas.place(relx=0, y=425, anchor=SW)
         self._X_ = self.xCanvas.create_text(60, 15, fill="black", text="X-Acc: ", font=('Helvetica 14 bold'))
         self._X_Acc = self.xCanvas.create_text(120, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
         
         self.yCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
-        self.yCanvas.place(x=0, y=625, anchor=SW)
+        self.yCanvas.place(x=0, y=450, anchor=SW)
         self._Y_ = self.yCanvas.create_text(60, 15, fill="black", text="Y-Acc: ", font=('Helvetica 14 bold'))
         self._Y_Acc = self.yCanvas.create_text(120, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
         
@@ -174,7 +179,7 @@ class Location:
 class Maneuver:
     def __init__(self, obj):
         self.maneuverCanvas = Canvas(obj.window, height=160, width=160,background="white", highlightthickness=1)
-        self.maneuverCanvas.place(relx=1, y=575,anchor=SE)
+        self.maneuverCanvas.place(relx=1, y=400,anchor=SE)
         self.photo = PhotoImage(file="Images/force.png")
         self.maneuverCanvas.create_image(0, 0, image=self.photo, anchor=NW)
         self.pitchArr = self.maneuverCanvas.create_line(41,105,130,130, arrow=LAST, width=3, fill="green")
@@ -182,12 +187,12 @@ class Maneuver:
         self.yawArr = self.maneuverCanvas.create_line(41, 105, 41,20, arrow=LAST, width=3, fill="blue")
         #roll, pitch ve yaw
         self.yawCanvas = Canvas(obj.window, height=25, width=160, background="white", highlightthickness=1)
-        self.yawCanvas.place(relx=1, y=600, anchor=SE)
+        self.yawCanvas.place(relx=1, y=425, anchor=SE)
         self._Yaw_ = self.yawCanvas.create_text(60, 15, fill="black", text="Yaw: ", font=('Helvetica 14 bold'))
         self._Yaw_Deg = self.yawCanvas.create_text(120, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=E)
                 
         self.rollCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
-        self.rollCanvas.place(relx=1, y=625, anchor=SE)
+        self.rollCanvas.place(relx=1, y=450, anchor=SE)
         self._Roll_ = self.rollCanvas.create_text(60, 15, fill="black", text="Roll: ", font=('Helvetica 14 bold'))
         self._Roll_Deg = self.rollCanvas.create_text(120, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=E)
         
