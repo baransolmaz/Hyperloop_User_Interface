@@ -74,11 +74,7 @@ class Logo:
         self.logoCanvas = Canvas(obj.window, height=145, width=145, background="blue", highlightthickness=3)
         self.photo = PhotoImage(file="Images/logo.png")
         self.logoCanvas.create_image(75,74, image=self.photo, anchor=CENTER)
-        self.logoCanvas.place(x=450, y=340)
-        #self.numberCanvas = Canvas(obj.window, height=100, width=150, background="white", highlightthickness=0)
-        # self.numberPhoto = PhotoImage(file="Images/44.png")
-        # self.numberCanvas.create_image(75, 50, image=self.numberPhoto, anchor=CENTER)
-        # self.numberCanvas.place(x=275, y=410)
+        self.logoCanvas.place(x=350, y=250)
 class Pressure:
     def __init__(self, obj):
         self.pressureCanvas = Canvas(obj.window, height=25, width=300,background="white", highlightthickness=1)
@@ -91,7 +87,7 @@ class Pressure:
 class Power:
     def __init__(self, obj):
         self.powerCanvas = Canvas(obj.window, height=150, width=140, background="white", highlightthickness=1)
-        self.powerCanvas.place(x=150, rely=1,anchor=SW)
+        self.powerCanvas.place(x=250, rely=1,anchor=SW)
         self.photo = PhotoImage(file="Images/bolt.png")
         self.powerCanvas.create_image(25, 0, image=self.photo, anchor=NW)
         self.p_txt = self.powerCanvas.create_text(10, 90, fill="black", text="      Power\nConsumption", font=('Helvetica 14 bold'),anchor=NW)
@@ -175,53 +171,47 @@ class Acceleration:
             200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
 class Location:
     def __init__(self, obj):
-        self.xCanvas = Canvas(obj.window, height=25, width=300,
-                              background="white", highlightthickness=1)
+        self.xCanvas = Canvas(obj.window, height=25, width=300,background="white", highlightthickness=1)
         self.xCanvas.place(x=0, y=225)
-        self._X_ = self.xCanvas.create_text(
-            60, 15, fill="black", text="X-Loc: ", font=('Helvetica 16 bold'))
-        self._X_Loc = self.xCanvas.create_text(
-            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
-        self.yCanvas = Canvas(obj.window, height=25, width=300,
-                              background="white", highlightthickness=1)
+        self._X_ = self.xCanvas.create_text(60, 15, fill="black", text="X-Loc: ", font=('Helvetica 16 bold'))
+        self._X_Loc = self.xCanvas.create_text(200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        
+        self.yCanvas = Canvas(obj.window, height=25, width=300,background="white", highlightthickness=1)
         self.yCanvas.place(x=0, y=250)
-        self._Y_ = self.yCanvas.create_text(
-            60, 15, fill="black", text="Y-Loc: ", font=('Helvetica 16 bold'))
-        self._Y_Loc = self.yCanvas.create_text(
-            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
-        self.zCanvas = Canvas(obj.window, height=25, width=300,
-                              background="white", highlightthickness=1)
+        self._Y_ = self.yCanvas.create_text(60, 15, fill="black", text="Y-Loc: ", font=('Helvetica 16 bold'))
+        self._Y_Loc = self.yCanvas.create_text(200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        
+        self.zCanvas = Canvas(obj.window, height=25, width=300,background="white", highlightthickness=1)
         self.zCanvas.place(x=0, y=275)
-        self._Z_ = self.zCanvas.create_text(
-            60, 15, fill="black", text="Z-Loc: ", font=('Helvetica 16 bold'))
-        self._Z_Loc = self.zCanvas.create_text(
-            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self._Z_ = self.zCanvas.create_text(60, 15, fill="black", text="Z-Loc: ", font=('Helvetica 16 bold'))
+        self._Z_Loc = self.zCanvas.create_text(200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
 class Maneuver:
     def __init__(self, obj):
+        self.maneuverCanvas = Canvas(obj.window, height=160, width=160,background="white", highlightthickness=1)
+        self.maneuverCanvas.place(relx=1, y=575,anchor=SE)
+        self.photo = PhotoImage(file="Images/force.png")
+        self.maneuverCanvas.create_image(0, 0, image=self.photo, anchor=NW)
+        self.pitchArr = self.maneuverCanvas.create_line(41,105,130,130, arrow=LAST, width=3, fill="green")
+        self.rollArr = self.maneuverCanvas.create_line(41,105,130,70, arrow=LAST, width=3, fill="red")
+        self.yawArr = self.maneuverCanvas.create_line(41, 105, 41,20, arrow=LAST, width=3, fill="blue")
         #roll, pitch ve yaw
-        self.pitchCanvas = Canvas(obj.window, height=25, width=300,
-                                background="white", highlightthickness=1)
-        self.pitchCanvas.place(x=0, y=225)
-        self._Pitch_ = self.pitchCanvas.create_text(
-            60, 15, fill="black", text="Pitch: ", font=('Helvetica 16 bold'))
-        self._Pitch_Deg = self.pitchCanvas.create_text(
-            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
-        self.rollCanvas = Canvas(obj.window, height=25, width=300,
-                                background="white", highlightthickness=1)
-        self.rollCanvas.place(x=0, y=250)
-        self._Roll_ = self.rollCanvas.create_text(
-            60, 15, fill="black", text="Roll: ", font=('Helvetica 16 bold'))
-        self._Roll_Deg = self.rollCanvas.create_text(
-            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
-        self.yawCanvas = Canvas(obj.window, height=25, width=300,
-                                background="white", highlightthickness=1)
-        self.yawCanvas.place(x=0, y=275)
-        self._Yaw_ = self.yawCanvas.create_text(
-            60, 15, fill="black", text="Yaw: ", font=('Helvetica 16 bold'))
-        self._Yaw_Deg = self.yawCanvas.create_text(
-            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.yawCanvas = Canvas(obj.window, height=25, width=160, background="white", highlightthickness=1)
+        self.yawCanvas.place(relx=1, y=600, anchor=SE)
+        self._Yaw_ = self.yawCanvas.create_text(60, 15, fill="black", text="Yaw: ", font=('Helvetica 16 bold'))
+        self._Yaw_Deg = self.yawCanvas.create_text(120, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=E)
+                
+        self.rollCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
+        self.rollCanvas.place(relx=1, y=625, anchor=SE)
+        self._Roll_ = self.rollCanvas.create_text(60, 15, fill="black", text="Roll: ", font=('Helvetica 16 bold'))
+        self._Roll_Deg = self.rollCanvas.create_text(120, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=E)
+        
+        self.pitchCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
+        self.pitchCanvas.place(relx=1, rely=1, anchor=SE)
+        self._Pitch_ = self.pitchCanvas.create_text(60, 15, fill="black", text="Pitch: ", font=('Helvetica 16 bold'))
+        self._Pitch_Deg = self.pitchCanvas.create_text(120, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=E)
         
         
+                
 # class Location:
 #     def __init__(self, obj):
 #         self.location = [40.806649, 29.359085]  # x,y
@@ -248,19 +238,7 @@ class Maneuver:
 #         self._Y_Loc = self.locationCanvas.create_text(
 #             180, 15, fill="black", text=str(locs[1]), font=('Helvetica 14 roman'), anchor=W)
 #         obj.window.update()
-# def changeSpeed(obj):
-#     for i in range(0, 80):
-#         updateSpeed(obj, i)
-#     for i in range(80, 40, -1):
-#         updateSpeed(obj, i)
-#     for i in range(40, 100):
-#         updateSpeed(obj, i)
-#     for i in range(100, 0, -1):
-#         updateSpeed(obj, i)
-# def changeLoc(obj):
-#     updateLoc(obj, [40.807712, 29.355991])
-# def updateLoc(obj,loc):
-#     obj.location.changeLoc(obj, loc)
+
 # def updateSpeed(obj, speed=0):
 #     if (obj.speedometer.angle < 270) or (obj.speedometer.angle > 90):
 #         obj.speedometer.angle = 90 + 1.8*speed
