@@ -1,9 +1,5 @@
-# import time
 from tkinter import *
-# import math
-# import folium
 #from PIL import Image, ImageTk
-# import os
 # import serial
 # import threading as thr
 # _PORT_ = '/dev/ttyUSB0'
@@ -21,12 +17,12 @@ class App:
         self.window.config(background="white")
         photo = PhotoImage(file="Images/logo.png")  # app icon
         self.window.iconphoto("false", photo)
+        self.logo = Logo(self)
         self.pressure = Pressure(self)
         self.temperature = Temperature(self)
         self.speed = Speed(self)
         self.acc = Acceleration(self)
         self.location = Location(self)
-        # self.logo = Logo(self)
         self.maneuver = Maneuver(self)
         self.power = Power(self)
         # self.readData = thr.Thread(target=self.readAndParseDATA)
@@ -71,10 +67,10 @@ class App:
     #             self.serialCon.close()
 class Logo:
     def __init__(self, obj):
-        self.logoCanvas = Canvas(obj.window, height=145, width=145, background="blue", highlightthickness=3)
+        self.logoCanvas = Canvas(obj.window, height=145, width=145, background="blue", highlightthickness=0)
         self.photo = PhotoImage(file="Images/logo.png")
         self.logoCanvas.create_image(75,74, image=self.photo, anchor=CENTER)
-        self.logoCanvas.place(x=350, y=250)
+        self.logoCanvas.place(x=250, y=175)
 class Pressure:
     def __init__(self, obj):
         self.pressureCanvas = Canvas(obj.window, height=150, width=150,background="white", highlightthickness=1)
@@ -201,17 +197,6 @@ class Maneuver:
         self._Pitch_ = self.pitchCanvas.create_text(60, 15, fill="black", text="Pitch: ", font=('Helvetica 14 bold'))
         self._Pitch_Deg = self.pitchCanvas.create_text(120, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=E)
         
-# def colorPicker(charge):
-#     if charge < 20:
-#         return "#A10000"
-#     elif charge < 40:
-#         return "#C25F00"
-#     elif charge < 60:
-#         return "#E2BE00"
-#     elif charge < 80:
-#         return "#AAB900"
-#     else:
-#         return "#71B400"
 # def exit_func(obj):
 #     setFlag(1)
 #     obj.readData.join()
