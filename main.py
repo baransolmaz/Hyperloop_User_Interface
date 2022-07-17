@@ -83,20 +83,19 @@ class Pressure:
     def __init__(self, obj):
         self.pressureCanvas = Canvas(obj.window, height=25, width=300,background="white", highlightthickness=1)
         self.pressureCanvas.place(x=0, y=0)
-        self._X_ = self.pressureCanvas.create_text(60, 15, fill="black", text="Pressure: ", font=('Helvetica 16 bold'))
-        self._X_Loc = self.pressureCanvas.create_text(200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.p_txt = self.pressureCanvas.create_text(60, 15, fill="black", text="Pressure: ", font=('Helvetica 16 bold'))
+        self.value_txt = self.pressureCanvas.create_text(200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
         # self.imageCanvas = Canvas(obj.window, height=300, width=300,background="red", highlightthickness=1)
         # self.imageCanvas.place(x=400, y=0)
 
 class Power:
     def __init__(self, obj):
-        self.powerCanvas = Canvas(
-            obj.window, height=25, width=300, background="white", highlightthickness=1)
-        self.powerCanvas.place(x=0, y=300)
-        self._X_ = self.powerCanvas.create_text(
-            80, 15, fill="black", text="Power Con.: ", font=('Helvetica 16 bold'))
-        self._X_Loc = self.powerCanvas.create_text(
-            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.powerCanvas = Canvas(obj.window, height=150, width=140, background="white", highlightthickness=1)
+        self.powerCanvas.place(x=150, rely=1,anchor=SW)
+        self.photo = PhotoImage(file="Images/bolt.png")
+        self.powerCanvas.create_image(25, 0, image=self.photo, anchor=NW)
+        self.p_txt = self.powerCanvas.create_text(10, 90, fill="black", text="      Power\nConsumption", font=('Helvetica 14 bold'),anchor=NW)
+        self.value_txt = self.powerCanvas.create_text(70, 140, fill="black", text="0", font=('Helvetica 14 roman'),anchor=CENTER)
 class Temperature:
     def __init__(self, obj):
         # self.thermometer = [PhotoImage(
