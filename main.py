@@ -87,32 +87,27 @@ class Pressure:
 class Power:
     def __init__(self, obj):
         self.powerCanvas = Canvas(obj.window, height=150, width=140, background="white", highlightthickness=1)
-        self.powerCanvas.place(x=250, rely=1,anchor=SW)
+        self.powerCanvas.place(x=350, rely=1,anchor=SW)
         self.photo = PhotoImage(file="Images/bolt.png")
         self.powerCanvas.create_image(25, 0, image=self.photo, anchor=NW)
         self.p_txt = self.powerCanvas.create_text(10, 90, fill="black", text="      Power\nConsumption", font=('Helvetica 14 bold'),anchor=NW)
         self.value_txt = self.powerCanvas.create_text(70, 140, fill="black", text="0", font=('Helvetica 14 roman'),anchor=CENTER)
 class Temperature:
     def __init__(self, obj):
-        # self.accelerationCanvas = Canvas(obj.window, height=140, width=160, background="white", highlightthickness=1)
-        # self.accelerationCanvas.place(relx=0, y=575, anchor=SW)
-        # self.photo = PhotoImage(file="Images/3d_acc.png")
-        # self.accelerationCanvas.create_image(0, 0, image=self.photo, anchor=NW)
-        self.p1Canvas = Canvas(obj.window, height=25, width=300, background="white", highlightthickness=1)
-        # self.p1Canvas.create_image(25, 26, image=self.temperaturemeter[0], anchor=CENTER)
-        self.p1 = self.p1Canvas.create_text(
-            100, 15, fill="black", text="P1 - Temperature: ", font=('Helvetica 16 bold'))
-        self.p1 = self.p1Canvas.create_text(200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
-        self.p1Canvas.place(x=0, y=25)
-        self.p2Canvas = Canvas(
-            obj.window, height=25, width=300, background="white", highlightthickness=1)
-        # self.p2Canvas.create_image(25, 26, image=self.temperaturemeter[0], anchor=CENTER)
-        self.p1 = self.p2Canvas.create_text(
-            100, 15, fill="black", text="P2 - Temperature: ", font=('Helvetica 16 bold'))
-        self.p1 = self.p2Canvas.create_text(
-            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
-        self.p2Canvas.place(x=0, y=50)
+        self.temperatureCanvas = Canvas(obj.window, height=120, width=120, background="white", highlightthickness=1)
+        self.temperatureCanvas.place(x=200, y=600, anchor=SW)
+        self.photo = PhotoImage(file="Images/thermo.png")
+        self.temperatureCanvas.create_image(0, 0, image=self.photo, anchor=NW)
         
+        self.p1Canvas = Canvas(obj.window, height=25, width=120, background="white", highlightthickness=1)
+        self.p1 = self.p1Canvas.create_text(40, 15, fill="black", text="P1: ", font=('Helvetica 14 bold'))
+        self.p1_val = self.p1Canvas.create_text(80, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.p1Canvas.place(x=200, y=625, anchor=SW)
+        
+        self.p2Canvas = Canvas(obj.window, height=25, width=120, background="white", highlightthickness=1)
+        self.p2 = self.p2Canvas.create_text(40, 15, fill="black", text="P2: ", font=('Helvetica 14 bold'))
+        self.p2_val = self.p2Canvas.create_text(80, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.p2Canvas.place(x=200, rely=1, anchor=SW)
 class Speed:
     def __init__(self, obj):
         self.speedCanvas = Canvas(obj.window, height=140, width=160, background="white", highlightthickness=1)
@@ -134,7 +129,6 @@ class Speed:
         self.zCanvas.place(x=0, y=390)
         self._Z_ = self.zCanvas.create_text(60, 15, fill="black", text="Z-Speed: ", font=('Helvetica 14 bold'))
         self._Z_Speed = self.zCanvas.create_text(120, 5, fill="black", text="0", font=('Helvetica 14 roman'), anchor=NW)
-        
 class Acceleration:
     def __init__(self, obj):
         self.accelerationCanvas = Canvas(obj.window, height=140, width=160, background="white", highlightthickness=1)
