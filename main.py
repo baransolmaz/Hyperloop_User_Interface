@@ -115,39 +115,26 @@ class Temperature:
         
 class Speed:
     def __init__(self, obj):
-        #SPEED Canvas
-        self.xCanvas = Canvas(obj.window, height=25, width=300, background="white", highlightthickness=1)
-        self.xCanvas.place(x=0, y=75)
-        self._X_ = self.xCanvas.create_text(60, 15, fill="black", text="X-Speed: ", font=('Helvetica 16 bold'))
-        self._X_Speed = self.xCanvas.create_text(
-            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
-        self.yCanvas = Canvas(obj.window, height=25, width=300,
-                              background="white", highlightthickness=1)
-        self.yCanvas.place(x=0, y=100)
-        self._Y_ = self.yCanvas.create_text(60, 15, fill="black", text="Y-Speed: ", font=('Helvetica 16 bold'))
-        self._Y_Speed = self.yCanvas.create_text(
-            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
-        self.zCanvas = Canvas(obj.window, height=25, width=300,
-                              background="white", highlightthickness=1)
-        self.zCanvas.place(x=0, y=125)
-        self._Z_ = self.zCanvas.create_text(
-            60, 15, fill="black", text="Z-Speed: ", font=('Helvetica 16 bold'))
-        self._Z_Speed = self.zCanvas.create_text(
-            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
-        # self.imageCanvas = Canvas(obj.window, height=300, width=300,background="red", highlightthickness=1)
-        # self.imageCanvas.place(x=400, y=0)
-        # self.speedometer = PhotoImage(file='Images/speedometer.png')
-        # self.speedCanvas.create_image(
-        #     103, 52, image=self.speedometer, anchor=CENTER)
-        # coord = 2, 200, 200, 2
-        # self.speedCanvas.create_arc(coord, start=0, extent=180, width=2)
-        #SPEED Arrow
-        # self.speedArrow = self.speedCanvas.create_line(
-        #     100, 100, 0, 100, arrow=LAST, width=5, fill="blue")
-        # self.angle = 90
-        # self.speedTxt = self.speedCanvas.create_text(
-        #     100, 65, fill="black", text="0", font=('Helvetica 20 bold'))
-
+        self.speedCanvas = Canvas(obj.window, height=140, width=160, background="white", highlightthickness=1)
+        self.speedCanvas.place(relx=0, y=200, anchor=NW)
+        self.photo = PhotoImage(file="Images/3d_acc.png")
+        self.speedCanvas.create_image(0, 0, image=self.photo, anchor=NW)
+        
+        self.xCanvas = Canvas(obj.window, height=25, width=160, background="white", highlightthickness=1)
+        self.xCanvas.place(x=0, y=340)
+        self._X_ = self.xCanvas.create_text(60, 15, fill="black", text="X-Speed: ", font=('Helvetica 14 bold'))
+        self._X_Speed = self.xCanvas.create_text(120, 5, fill="black", text="0", font=('Helvetica 14 roman'), anchor=NW)
+        
+        self.yCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
+        self.yCanvas.place(x=0, y=365)
+        self._Y_ = self.yCanvas.create_text(60, 15, fill="black", text="Y-Speed: ", font=('Helvetica 14 bold'))
+        self._Y_Speed = self.yCanvas.create_text(120, 5, fill="black", text="0", font=('Helvetica 14 roman'), anchor=NW)
+        
+        self.zCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
+        self.zCanvas.place(x=0, y=390)
+        self._Z_ = self.zCanvas.create_text(60, 15, fill="black", text="Z-Speed: ", font=('Helvetica 14 bold'))
+        self._Z_Speed = self.zCanvas.create_text(120, 5, fill="black", text="0", font=('Helvetica 14 roman'), anchor=NW)
+        
 class Acceleration:
     def __init__(self, obj):
         self.accelerationCanvas = Canvas(obj.window, height=140, width=160, background="white", highlightthickness=1)
@@ -215,47 +202,6 @@ class Maneuver:
         self._Pitch_ = self.pitchCanvas.create_text(60, 15, fill="black", text="Pitch: ", font=('Helvetica 14 bold'))
         self._Pitch_Deg = self.pitchCanvas.create_text(120, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=E)
         
-# class Location:
-#     def __init__(self, obj):
-#         self.location = [40.806649, 29.359085]  # x,y
-#         self.locationCanvas = Canvas(obj.window, height=25, width=300,
-#                                      background="white", highlightthickness=1)
-#         self.locationCanvas.place(x=400, y=300)
-#         self._X_ = self.locationCanvas.create_text(
-#             20, 15, fill="black", text="X: ", font=('Helvetica 16 bold'))
-#         self._Y_ = self.locationCanvas.create_text(
-#             160, 15, fill="black", text="Y: ", font=('Helvetica 16 bold'))
-#         self._X_Loc = self.locationCanvas.create_text(
-#             40, 15, fill="black", text=str(self.location[0]), font=('Helvetica 14 roman'), anchor=W)
-#         self._Y_Loc = self.locationCanvas.create_text(
-#             180, 15, fill="black", text=str(self.location[1]), font=('Helvetica 14 roman'), anchor=W)
-#         self.imageCanvas = Canvas(obj.window, height=300, width=300,background="red", highlightthickness=1)
-#         self.imageCanvas.place(x=400, y=0)
-               
-#     def changeLoc(self, obj, locs):
-#         self.location = locs
-#         self.locationCanvas.delete(self._X_Loc)
-#         self.locationCanvas.delete(self._Y_Loc)
-#         self._X_Loc = self.locationCanvas.create_text(
-#             40, 15, fill="black", text=str(locs[0]), font=('Helvetica 14 roman'), anchor=W)
-#         self._Y_Loc = self.locationCanvas.create_text(
-#             180, 15, fill="black", text=str(locs[1]), font=('Helvetica 14 roman'), anchor=W)
-#         obj.window.update()
-
-# def updateSpeed(obj, speed=0):
-#     if (obj.speedometer.angle < 270) or (obj.speedometer.angle > 90):
-#         obj.speedometer.angle = 90 + 1.8*speed
-#         #obj.speedometer.angle += 1.8
-#         x = 100 - 100*math.sin(math.radians(obj.speedometer.angle))
-#         y = 100 + 100*math.cos(math.radians(obj.speedometer.angle))
-#         obj.speedometer.speedCanvas.delete(obj.speedometer.speedTxt)
-#         obj.speedometer.speedCanvas.delete(obj.speedometer.speedArrow)
-#         obj.speedometer.speedTxt = obj.speedometer.speedCanvas.create_text(100, 65, fill="black", text=str(
-#             int((obj.speedometer.angle-90)/1.8)), font=('Helvetica 20 bold'))
-#         obj.speedometer.speedArrow = obj.speedometer.speedCanvas.create_line(
-#             100, 100, 0 + x, y, arrow=LAST, width=5, fill="blue")
-#     obj.window.update()
-
 # def colorPicker(charge):
 #     if charge < 20:
 #         return "#A10000"
@@ -293,33 +239,6 @@ class Maneuver:
 #     first12=sum
 #     updateBattery(obj.mainBattery,(first12+last6)/18)
     
-# def paket2(obj, datas):
-#     sum=0
-#     arr= datas.split("\\")[0].split(",")
-#     for i in range(3):
-#         updateBattery(obj.allBatteries[2][2+i], int(arr[i]))
-#         sum += int(arr[i])
-#     for i in range(3):
-#         updateBattery(obj.allBatteries[3][i], int(arr[i+3]))
-#         sum+=int(arr[i+3])
-#     global last6,first12
-#     last6=sum
-#     updateBattery(obj.mainBattery, (first12+last6)/18)
-#     sag=int(arr[6])
-#     sol = int(arr[7])
-#     kacak = int(arr[8])
-#     mot = int(arr[9])
-#     amp = int(arr[10])
-#     volt = int(arr[11])
-#     sicaklik = float(arr[12])
-#     changeSignals(obj, [amp,volt,mot, sol, sag, sicaklik,kacak])
-#     updateSpeed(obj, int(arr[13]))
-    
-# def paket3(obj, datas):
-#     arr= datas.split("\\")[0].split(",")
-#     updateSteer(obj, float(arr[0]))
-#     updateLoc(obj, [float(arr[1]), float(arr[2])])
-
 if __name__ == '__main__':
     app = App()
     # app.window.bind("<Up>", lambda event, obj=app: changeSpeed(obj))
