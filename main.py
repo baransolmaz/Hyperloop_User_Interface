@@ -148,6 +148,12 @@ class Speed:
 
 class Acceleration:
     def __init__(self, obj):
+        # self.locationCanvas = Canvas(
+        #      obj.window, height=140, width=160, background="white", highlightthickness=1)
+        # self.locationCanvas.place(relx=1, rely=0,anchor=NE)
+        # self.photo = PhotoImage(file="Images/3d.png")
+        # self.locationCanvas.create_image(0, 0, image=self.photo, anchor=NW)
+        
         self.xCanvas = Canvas(obj.window, height=25, width=300,
                               background="white", highlightthickness=1)
         self.xCanvas.place(x=0, y=150)
@@ -171,20 +177,25 @@ class Acceleration:
             200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
 class Location:
     def __init__(self, obj):
-        self.xCanvas = Canvas(obj.window, height=25, width=300,background="white", highlightthickness=1)
-        self.xCanvas.place(x=0, y=225)
-        self._X_ = self.xCanvas.create_text(60, 15, fill="black", text="X-Loc: ", font=('Helvetica 16 bold'))
-        self._X_Loc = self.xCanvas.create_text(200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.locationCanvas = Canvas(obj.window, height=140, width=160,background="white", highlightthickness=1)
+        self.locationCanvas.place(relx=1, rely=0,anchor=NE)
+        self.photo = PhotoImage(file="Images/3d.png")
+        self.locationCanvas.create_image(0, 0, image=self.photo, anchor=NW)
         
-        self.yCanvas = Canvas(obj.window, height=25, width=300,background="white", highlightthickness=1)
-        self.yCanvas.place(x=0, y=250)
-        self._Y_ = self.yCanvas.create_text(60, 15, fill="black", text="Y-Loc: ", font=('Helvetica 16 bold'))
-        self._Y_Loc = self.yCanvas.create_text(200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.xCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
+        self.xCanvas.place(relx=1, y=140,anchor=NE)
+        self._X_ = self.xCanvas.create_text(60, 15, fill="black", text="X-Loc: ", font=('Helvetica 14 bold'))
+        self._X_Loc = self.xCanvas.create_text(120, 5, fill="black", text="0", font=('Helvetica 14 roman'), anchor=NE)
         
-        self.zCanvas = Canvas(obj.window, height=25, width=300,background="white", highlightthickness=1)
-        self.zCanvas.place(x=0, y=275)
-        self._Z_ = self.zCanvas.create_text(60, 15, fill="black", text="Z-Loc: ", font=('Helvetica 16 bold'))
-        self._Z_Loc = self.zCanvas.create_text(200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.yCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
+        self.yCanvas.place(relx=1, y=165,anchor=NE)
+        self._Y_ = self.yCanvas.create_text(60, 15, fill="black", text="Y-Loc: ", font=('Helvetica 14 bold'))
+        self._Y_Loc = self.yCanvas.create_text(120, 5, fill="black", text="0", font=('Helvetica 14 roman'), anchor=NE)
+        
+        self.zCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
+        self.zCanvas.place(relx=1, y=190,anchor=NE)
+        self._Z_ = self.zCanvas.create_text(60, 15, fill="black", text="Z-Loc: ", font=('Helvetica 14 bold'))
+        self._Z_Loc = self.zCanvas.create_text(120, 5, fill="black", text="0", font=('Helvetica 14 roman'), anchor=NE)
 class Maneuver:
     def __init__(self, obj):
         self.maneuverCanvas = Canvas(obj.window, height=160, width=160,background="white", highlightthickness=1)
@@ -197,21 +208,19 @@ class Maneuver:
         #roll, pitch ve yaw
         self.yawCanvas = Canvas(obj.window, height=25, width=160, background="white", highlightthickness=1)
         self.yawCanvas.place(relx=1, y=600, anchor=SE)
-        self._Yaw_ = self.yawCanvas.create_text(60, 15, fill="black", text="Yaw: ", font=('Helvetica 16 bold'))
+        self._Yaw_ = self.yawCanvas.create_text(60, 15, fill="black", text="Yaw: ", font=('Helvetica 14 bold'))
         self._Yaw_Deg = self.yawCanvas.create_text(120, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=E)
                 
         self.rollCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
         self.rollCanvas.place(relx=1, y=625, anchor=SE)
-        self._Roll_ = self.rollCanvas.create_text(60, 15, fill="black", text="Roll: ", font=('Helvetica 16 bold'))
+        self._Roll_ = self.rollCanvas.create_text(60, 15, fill="black", text="Roll: ", font=('Helvetica 14 bold'))
         self._Roll_Deg = self.rollCanvas.create_text(120, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=E)
         
         self.pitchCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
         self.pitchCanvas.place(relx=1, rely=1, anchor=SE)
-        self._Pitch_ = self.pitchCanvas.create_text(60, 15, fill="black", text="Pitch: ", font=('Helvetica 16 bold'))
+        self._Pitch_ = self.pitchCanvas.create_text(60, 15, fill="black", text="Pitch: ", font=('Helvetica 14 bold'))
         self._Pitch_Deg = self.pitchCanvas.create_text(120, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=E)
         
-        
-                
 # class Location:
 #     def __init__(self, obj):
 #         self.location = [40.806649, 29.359085]  # x,y
