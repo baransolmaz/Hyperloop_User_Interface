@@ -28,6 +28,7 @@ class App:
         self.location = Location(self)
         self.logo = Logo(self)
         self.maneuver = Maneuver(self)
+        self.power = Power(self)
         # self.readData = thr.Thread(target=self.readAndParseDATA)
         # self.readData.start()
 
@@ -87,6 +88,15 @@ class Pressure:
         # self.imageCanvas = Canvas(obj.window, height=300, width=300,background="red", highlightthickness=1)
         # self.imageCanvas.place(x=400, y=0)
 
+class Power:
+    def __init__(self, obj):
+        self.powerCanvas = Canvas(
+            obj.window, height=25, width=300, background="white", highlightthickness=1)
+        self.powerCanvas.place(x=0, y=300)
+        self._X_ = self.powerCanvas.create_text(
+            80, 15, fill="black", text="Power Con.: ", font=('Helvetica 16 bold'))
+        self._X_Loc = self.powerCanvas.create_text(
+            200, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
 class Temperature:
     def __init__(self, obj):
         # self.thermometer = [PhotoImage(
