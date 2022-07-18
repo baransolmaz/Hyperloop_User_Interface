@@ -1,5 +1,4 @@
 from tkinter import *
-#from PIL import Image, ImageTk
 # import serial
 # import threading as thr
 # _PORT_ = '/dev/ttyUSB0'
@@ -12,8 +11,8 @@ class App:
         self.window = Tk()
         self.window.geometry("575x475")  # Screen Size
         self.window.resizable(0, 0)
-        self.window.title("ALFA-ETA-HYPER")  # Pencere ismi
-        self.window.iconname("ALFA-ETA-HYPER")
+        self.window.title("ALFA ETA-H")  # Pencere ismi
+        self.window.iconname("ALFA ETA-H")
         self.window.config(background="white")
         photo = PhotoImage(file="Images/logo.png")  # app icon
         self.window.iconphoto("false", photo)
@@ -28,7 +27,6 @@ class App:
         # self.readData = thr.Thread(target=self.readAndParseDATA)
         # self.readData.start()
 
-        
     # def connectUSB(self):
     #     ser = serial.Serial(
     #         # Serial Port to read the data from
@@ -200,7 +198,6 @@ class Maneuver:
 # def exit_func(obj):
 #     setFlag(1)
 #     obj.readData.join()
-#     obj.mapThread.join()
 #     obj.window.destroy()
 # def getFlag():
 #     global _END_FLAG_
@@ -225,10 +222,5 @@ class Maneuver:
     
 if __name__ == '__main__':
     app = App()
-    # app.window.bind("<Up>", lambda event, obj=app: changeSpeed(obj))
-    # app.window.bind("<Left>", lambda event, obj=app: changeBattery(obj))
-    # app.window.bind("<BackSpace>", lambda event, obj=app: changeSig(obj))
-    # app.window.bind("<Down>", lambda event, obj=app: changeLoc(obj))
-    # app.window.bind("<Right>", lambda event, obj=app: changeSteer(obj))
     # app.window.protocol('WM_DELETE_WINDOW', lambda obj= app: exit_func(obj))
     app.window.mainloop()
