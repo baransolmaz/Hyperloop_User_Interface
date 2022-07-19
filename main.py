@@ -1,4 +1,5 @@
 from tkinter import *
+from turtle import update
 # import serial
 # import threading as thr
 # _PORT_ = '/dev/ttyUSB0'
@@ -116,8 +117,8 @@ class Speed:
         
         self.xCanvas = Canvas(obj.window, height=25, width=160, background="white", highlightthickness=1)
         self.xCanvas.place(x=0, y=140)
-        self._X_ = self.xCanvas.create_text(60, 15, fill="black", text="X-Speed: ", font=('Helvetica 14 bold'))
-        self._X_Speed = self.xCanvas.create_text(120, 5, fill="black", text="0", font=('Helvetica 14 roman'), anchor=NW)
+        self._X_ = self.xCanvas.create_text(45, 15, fill="black", text="X-Speed: ", font=('Helvetica 14 bold'))
+        self._X_Speed = self.xCanvas.create_text(120, 5, fill="black", text="0", font=('Helvetica 14 roman'), anchor=NE)
         
         self.yCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
         self.yCanvas.place(x=0, y=165)
@@ -194,7 +195,95 @@ class Maneuver:
         self.pitchCanvas.place(relx=1, rely=1, anchor=SE)
         self._Pitch_ = self.pitchCanvas.create_text(60, 15, fill="black", text="Pitch: ", font=('Helvetica 14 bold'))
         self._Pitch_Deg = self.pitchCanvas.create_text(120, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=E)
-        
+  
+def updatePressure(obj,value):
+    obj.txtCanvas.delete(obj.value_txt)
+    obj.value_txt = obj.txtCanvas.create_text(120, 15, fill="black", text=value, font=('Helvetica 14 roman'), anchor=W)
+def changePressure(obj,value):
+    updatePressure(obj.pressure,value)
+    obj.window.update()
+
+def updatePower(obj, value):
+    obj.pCanvas.delete(obj.value_txt)
+    obj.value_txt = obj.pCanvas.create_text(70, 16, fill="black", text=value, font=('Helvetica 14 roman'), anchor=CENTER)
+def changePower(obj, value):
+    updatePower(obj.power, value)
+    obj.window.update()
+
+def updateLocation(obj, value):
+    obj.xCanvas.delete(obj._X_Loc)
+    obj._X_Loc = obj.xCanvas.create_text(120, 5, fill="black", text=value[0], font=('Helvetica 14 roman'), anchor=NE)
+    
+    obj.yCanvas.delete(obj._Y_Loc)
+    obj._Y_Loc = obj.yCanvas.create_text(120, 5, fill="black", text=value[1], font=('Helvetica 14 roman'), anchor=NE)  
+    
+    obj.zCanvas.delete(obj._Z_Loc)
+    obj._Z_Loc = obj.zCanvas.create_text(120, 5, fill="black", text=value[2], font=('Helvetica 14 roman'), anchor=NE)
+def changeLocation(obj, value):
+    updateLocation(obj.location, value)
+    obj.window.update()
+    
+def updateAcceleration(obj, value):
+    obj.xCanvas.delete(obj._X_Acc)
+    obj._X_Acc = obj.xCanvas.create_text(120, 15, fill="black", text=value[0], font=('Helvetica 14 roman'), anchor=W)
+
+    obj.yCanvas.delete(obj._Y_Acc)
+    obj._Y_Acc = obj.yCanvas.create_text(120, 15, fill="black", text=value[1], font=('Helvetica 14 roman'), anchor=W)
+
+    obj.zCanvas.delete(obj._Z_Acc)
+    obj._Z_Acc = obj.zCanvas.create_text(120, 15, fill="black", text=value[2], font=('Helvetica 14 roman'), anchor=W)
+def changeAcceleration(obj, value):
+    updateAcceleration(obj.acc, value)
+    obj.window.update()
+
+def updateSpeed(obj, value):
+    obj.xCanvas.delete(obj._X_Speed)
+    obj._X_Speed = obj.xCanvas.create_text(120, 5, fill="black", text=value[0], font=('Helvetica 14 roman'), anchor=NW)
+
+    obj.yCanvas.delete(obj._Y_Speed)
+    obj._Y_Speed = obj.yCanvas.create_text(120, 5, fill="black", text=value[1], font=('Helvetica 14 roman'), anchor=NW)
+
+    obj.zCanvas.delete(obj._Z_Speed)
+    obj._Z_Speed = obj.zCanvas.create_text(120, 5, fill="black", text=value[2], font=('Helvetica 14 roman'), anchor=NW)
+def changeSpeed(obj, value):
+    updateSpeed(obj.speed, value)
+    obj.window.update()
+
+def updateTemperature(obj, value):
+    obj.p1Canvas.delete(obj.p1_val)
+    obj.p1_val = obj.p1Canvas.create_text(80, 15, fill="black", text=value[0], font=('Helvetica 14 roman'), anchor=W)
+
+    obj.p2Canvas.delete(obj.p2_val)
+    obj.p2_val = obj.p2Canvas.create_text(80, 15, fill="black", text=value[1], font=('Helvetica 14 roman'), anchor=W)
+def changeTemperature(obj, value):
+    updateTemperature(obj.temperature, value)
+    obj.window.update()
+    
+def updateManeuver(obj, value):
+    obj.yawCanvas.delete(obj._Yaw_Deg)
+    obj._Yaw_Deg = obj.yawCanvas.create_text(120, 15, fill="black", text=value[0], font=('Helvetica 14 roman'), anchor=E)
+            
+    obj.rollCanvas.delete(obj._Roll_Deg)
+    obj._Roll_Deg = obj.rollCanvas.create_text(120, 15, fill="black", text=value[1], font=('Helvetica 14 roman'), anchor=E)
+    
+    obj.pitchCanvas.delete(obj._Pitch_Deg)
+    obj._Pitch_Deg = obj.pitchCanvas.create_text(120, 15, fill="black", text=value[2], font=('Helvetica 14 roman'), anchor=E)
+    
+def changeManeuver(obj, value):
+    updateManeuver(obj.maneuver, value)
+    obj.window.update()
+    
+    
+def changeAll(obj):
+    changePower(obj,"10")
+    changePressure(obj,"15")
+    changeLocation(obj,["1","2","3"])
+    changeAcceleration(obj,["1","2","3"])
+    changeSpeed(obj, ["1", "2", "3"])
+    changeTemperature(obj,["1","2"])
+    changeManeuver(obj, ["1", "2", "3"])
+    
+    
 # def exit_func(obj):
 #     setFlag(1)
 #     obj.readData.join()
@@ -222,5 +311,6 @@ class Maneuver:
     
 if __name__ == '__main__':
     app = App()
+    app.window.bind("<Up>", lambda event, obj=app: changeAll(obj))
     # app.window.protocol('WM_DELETE_WINDOW', lambda obj= app: exit_func(obj))
     app.window.mainloop()
