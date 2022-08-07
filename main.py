@@ -1,5 +1,5 @@
 from tkinter import *
-from turtle import update
+import socket
 # import serial
 # import threading as thr
 # _PORT_ = '/dev/ttyUSB0'
@@ -7,6 +7,16 @@ from turtle import update
 # last6=0
 # _END_FLAG_=0
 
+_HOST_ = ""  # The server's hostname or IP address
+_PORT_ = 0  # The port used by the server
+
+def socket_operations():
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.connect((_HOST_,_PORT_))
+        s.sendall(b"Hello, world")
+    data = s.recv(1024)
+    print(f"Received {data!r}")
+    
 class App:
     def __init__(self):
         self.window = Tk()
