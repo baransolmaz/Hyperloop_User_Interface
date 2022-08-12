@@ -1,27 +1,17 @@
 from tkinter import *
 import socket
-# import serial
-# import threading as thr
-# _PORT_ = '/dev/ttyUSB0'
-# first12=0
-# last6=0
-# _END_FLAG_=0
+import time
+import threading as thr
+_END_FLAG_ = 0
 
-_HOST_ = ""  # The server's hostname or IP address
-_PORT_ = 0  # The port used by the server
+_HOST_ = '192.168.1.56'  # The server's hostname or IP address
+_PORT_ = 5005  # The port used by the server
 
-def socket_operations():
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.connect((_HOST_,_PORT_))
-        s.sendall(b"Hello, world")
-    data = s.recv(1024)
-    print(f"Received {data!r}")
-    
 class App:
     def __init__(self):
         self.window = Tk()
         self.window.geometry("575x475")  # Screen Size
-        self.window.resizable(0, 0)
+        self.window.resizable(0, 0) 
         self.window.title("ALFA ETA-H")  # Pencere ismi
         self.window.iconname("ALFA ETA-H")
         self.window.config(background="white")
@@ -35,45 +25,56 @@ class App:
         self.location = Location(self)
         self.maneuver = Maneuver(self)
         self.power = Power(self)
-        # self.readData = thr.Thread(target=self.readAndParseDATA)
-        # self.readData.start()
+        self.stop_button = Stop_Button(self)
+        self.socket = self.create_socket()
+        self.conn, self.addr= -1,-1
+        self.readData = thr.Thread(target=self.readAndParseDATA)
+        self.readData.start()
 
-    # def connectUSB(self):
-    #     ser = serial.Serial(
-    #         # Serial Port to read the data from
-    #         port=_PORT_,
-    #         #Rate at which the information is shared to the communication channel
-    #         baudrate=9600,
-    #         #Applying Parity Checking (none in this case)
-    #         parity=serial.PARITY_NONE,
-    #         # Pattern of Bits to be read
-    #         stopbits=serial.STOPBITS_ONE,
-    #         # Total number of bits to be read
-    #         bytesize=serial.EIGHTBITS,
-    #         # Number of serial commands to accept before timing out
-    #         timeout=1
-    #     )
-    #     return ser
-    # def readAndParseDATA(self):
-    #     while(getFlag() == 0):
-    #         try:
-    #             self.serialCon = self.connectUSB()
-    #         except serial.SerialException:
-    #             time.sleep(3)
-    #             pass
-    #         else:
-    #             while(getFlag()==0):
-    #                 x = self.serialCon.readline()
-    #                 #print(x)
-    #                 datas=str(x).split(":")
-    #                 paket = datas[0][2:4]
-    #                 if paket == '1':  # Battery 0 - 12
-    #                     paket1(self,datas[1])
-    #                 if paket == '2':  # Battery 12 - 18  + Left -Right Signal +Motor +Leakage Signal+Amper+Volt+pil Temp. 
-    #                     paket2(self, datas[1])
-    #                 if paket == '3':# direksiyon + konum
-    #                     paket3(self, datas[1])
-    #             self.serialCon.close()
+    def create_socket(self):
+        server_socket = socket.socket()  # get instance
+        server_socket.bind((_HOST_, _PORT_)) # bind host address and port together
+        server_socket.listen(2)
+        return server_socket
+
+    def readAndParseDATA(self):
+        self.socket.settimeout(5)
+        while(getFlag() == 0):
+            try:
+                print("Socket Timeout is 5 sec.")
+                print("Waiting for client...")
+                self.conn, self.addr = self.socket.accept()  # accept new connection
+                print("Connection from: " + str(self.addr))
+            except socket.timeout:
+                print("\n5 sec. over - No Client")
+                print("Checking again...\n")
+                time.sleep(1)
+                pass
+            else:    
+                while(getFlag() == 0):
+                    try:
+                        self.conn.sendall(b"ping") #Eğer gönderemezse(Raspberry bağlantisi kesilirse) exception verir 
+                        # eğer gönderebiliyorsa bağlantıda sorun yok demektir.
+                        data = self.conn.recv(15).decode()
+                        print("Received Data: " + str(data))
+                        ######
+                        ######  Parse Data!!!!!
+                        ######  changeXXX fonksiyonlarina gönder 
+                        ######
+                        
+                        pass #While a devam eder
+                    except:
+                        print("CONNECTION LOST")
+                        break # while dan cikar tekrar bağlanti bekler
+                    
+                self.conn.close()  # close the connection
+
+class Stop_Button:
+    def __init__(self, obj):
+        self.canvas = Canvas(obj.window, height=75, width=75, background="red", highlightthickness=2)
+        self.photo = PhotoImage(file="Images/button.png")
+        self.canvas.create_image(2,2, image=self.photo, anchor=NW)
+        self.canvas.place(x=160, y=200)
 class Logo:
     def __init__(self, obj):
         self.logoCanvas = Canvas(obj.window, height=145, width=145, background="blue", highlightthickness=0)
@@ -88,7 +89,7 @@ class Pressure:
         self.pressureCanvas.create_image(0, 0, image=self.photo, anchor=NW)
         
         self.txtCanvas = Canvas(obj.window, height=25, width=150, background="white", highlightthickness=1)
-        self.p_txt = self.txtCanvas.create_text(5, 15, fill="black", text="Pressure:     MPa", font=('Helvetica 14 bold'),anchor=W)
+        self.p_txt = self.txtCanvas.create_text(5, 15, fill="black", text="Pressure:     Bar", font=('Helvetica 14 bold'),anchor=W)
         self.value_txt = self.txtCanvas.create_text(90, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
         self.txtCanvas.place(x=200, y=150,anchor=NW)
 class Power:
@@ -283,44 +284,37 @@ def changeManeuver(obj, value):
     updateManeuver(obj.maneuver, value)
     obj.window.update()
     
+# def changeAll(obj):
+#     changePower(obj,"1042")
+#     changePressure(obj,"15")
+#     changeLocation(obj,["14510","20","73"])
+#     changeAcceleration(obj,["13","21","30"])
+#     changeSpeed(obj, ["199", "29", "3"])
+#     changeTemperature(obj,["215","12"])
+#     changeManeuver(obj, ["15", "214", "3"])
+     
+def exit_func(obj):
+    setFlag(1)
+    obj.readData.join()
+    print("Closing...")
+    obj.window.destroy()
+def getFlag():
+    global _END_FLAG_
+    return _END_FLAG_    
+def setFlag(i):
+    global _END_FLAG_
+    _END_FLAG_=1
     
-def changeAll(obj):
-    changePower(obj,"1042")
-    changePressure(obj,"15")
-    changeLocation(obj,["14510","20","73"])
-    changeAcceleration(obj,["13","21","30"])
-    changeSpeed(obj, ["199", "29", "3"])
-    changeTemperature(obj,["215","12"])
-    changeManeuver(obj, ["15", "214", "3"])
-    
-    
-# def exit_func(obj):
-#     setFlag(1)
-#     obj.readData.join()
-#     obj.window.destroy()
-# def getFlag():
-#     global _END_FLAG_
-#     return _END_FLAG_    
-# def setFlag(i):
-#     global _END_FLAG_
-#     _END_FLAG_=1
-    
-# def paket1(obj, datas):
-#     sum=0
-#     arr= datas.split("\\")[0].split(",")
-#     for i in range(0, 2):
-#         for j in range(0,5):
-#             updateBattery(obj.allBatteries[i][j], int(arr[(5*i)+j]))
-#             sum+=int(arr[(5*i)+j])
-#     for i in range(0, 2):
-#         updateBattery(obj.allBatteries[2][i], int(arr[10+i]))
-#         sum += int(arr[10+i])
-#     global first12,last6
-#     first12=sum
-#     updateBattery(obj.mainBattery,(first12+last6)/18)
-    
+def stop_signal(obj):
+    if obj.conn !=-1:
+        print("STOP")
+        obj.conn.send("stop".encode())
+    else:
+        print("No Client")
+
 if __name__ == '__main__':
     app = App()
-    app.window.bind("<Up>", lambda event, obj=app: changeAll(obj))
-    # app.window.protocol('WM_DELETE_WINDOW', lambda obj= app: exit_func(obj))
+    #app.window.bind("<Up>", lambda event, obj=app: changeAll(obj))
+    app.stop_button.canvas.bind("<Button-1>", lambda event, obj=app:stop_signal(obj))
+    app.window.protocol('WM_DELETE_WINDOW', lambda obj= app: exit_func(obj))
     app.window.mainloop()
