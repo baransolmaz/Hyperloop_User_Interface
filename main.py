@@ -4,15 +4,44 @@ import time
 import threading as thr
 _END_FLAG_ = 0
 
-_HOST_ = '192.168.1.56'  # The server's hostname or IP address
+_HOST_ = ""  # The server's hostname or IP address
 _PORT_ = 5005  # The port used by the server
 
+class Dialog():
+    def __init__(self):
+        self.root =Tk()
+        self.root.title("ALFA ETA-H")
+        canvas1 =Canvas(self.root, width=300, height=100,  relief='raised')
+        canvas1.pack()
+
+        label1 =Label(self.root, text='Insert Your IP:')
+        label1.config(font=('helvetica', 15))
+        canvas1.create_window(150, 25, window=label1)
+
+        entry1 =Entry(self.root)
+        canvas1.create_window(150, 50, window=entry1)
+
+        def getIP():
+            global _HOST_
+            _HOST_=str(entry1.get())
+            if len(_HOST_)<=0: 
+                _HOST_="-"
+            else:
+                tpl=_HOST_.split(".")
+                if len(tpl)!=4:
+                    _HOST_ = "-"
+
+            self.root.destroy()
+
+        button1 =Button(text='Insert', command=getIP,
+                            bg='brown', fg='white', font=('helvetica', 10, 'bold'))
+        canvas1.create_window(150, 75, window=button1)
 class App:
     def __init__(self):
         self.window = Tk()
         self.window.geometry("575x475")  # Screen Size
         self.window.resizable(0, 0) 
-        self.window.title("ALFA ETA-H")  # Pencere ismi
+        self.window.title("ALFA ETA-H "+_HOST_)  # Pencere ismi
         self.window.iconname("ALFA ETA-H")
         self.window.config(background="white")
         photo = PhotoImage(file="Images/logo.png")  # app icon
@@ -35,6 +64,7 @@ class App:
 
     def create_socket(self):
         server_socket = socket.socket()  # get instance
+        print(_HOST_)
         server_socket.bind((_HOST_, _PORT_)) # bind host address and port together
         server_socket.listen(2)
         return server_socket
@@ -305,7 +335,10 @@ def getFlag():
 def setFlag(i):
     global _END_FLAG_
     _END_FLAG_=1
-    
+
+def set_HOST_(val):
+    global _HOST_
+    _HOST_ =val
 def stop_signal(obj):
     if obj.conn !=-1:
         print("STOP")
@@ -314,7 +347,18 @@ def stop_signal(obj):
         print("No Client")
 
 if __name__ == '__main__':
-    
+    while True:
+        set_HOST_("")
+        dialog=Dialog()
+        dialog.root.mainloop()
+        if len(_HOST_) ==0:
+            exit()
+        else:
+            if len(_HOST_)==1:
+                print("Invalid IP...")
+                continue
+            else:
+                break
     app = App()
     #app.window.bind("<Up>", lambda event, obj=app: changeAll(obj))
     app.stop_button.canvas.bind("<Button-1>", lambda event, obj=app:stop_signal(obj))
