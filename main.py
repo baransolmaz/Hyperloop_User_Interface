@@ -55,6 +55,7 @@ class App:
         self.maneuver = Maneuver(self)
         self.power = Power(self)
         self.stop_button = Stop_Button(self)
+        self.valf_button = Valf_Button(self)
         self.socket = self.create_socket()
         
         self.conn, self.addr = -1, -1
@@ -107,6 +108,12 @@ class Stop_Button:
         self.photo = PhotoImage(file="Images/button.png")
         self.canvas.create_image(2,2, image=self.photo, anchor=NW)
         self.canvas.place(x=160, y=200)
+class Valf_Button:
+    def __init__(self, obj):
+        self.canvas = Canvas(obj.window, height=37, width=142,background="yellow", highlightthickness=2)
+        self.photo = PhotoImage(file="Images/valf.png")
+        self.canvas.create_image(2, 2, image=self.photo, anchor=NW)
+        self.canvas.place(x=15, y=218)
 class Logo:
     def __init__(self, obj):
         self.logoCanvas = Canvas(obj.window, height=145, width=145, background="blue", highlightthickness=0)
@@ -346,6 +353,13 @@ def stop_signal(obj):
     else:
         print("No Client")
 
+def valf_signal(obj):
+    if obj.conn != -1:
+        print("VALF")
+        obj.conn.send("valf".encode())
+    else:
+        print("No Client")
+        
 if __name__ == '__main__':
     while True:
         set_HOST_("")
@@ -362,5 +376,6 @@ if __name__ == '__main__':
     app = App()
     #app.window.bind("<Up>", lambda event, obj=app: changeAll(obj))
     app.stop_button.canvas.bind("<Button-1>", lambda event, obj=app:stop_signal(obj))
+    app.valf_button.canvas.bind("<Button-1>", lambda event, obj=app:valf_signal(obj))
     app.window.protocol('WM_DELETE_WINDOW', lambda obj= app: exit_func(obj))
     app.window.mainloop()
