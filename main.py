@@ -128,8 +128,8 @@ class Pressure:
         self.pressureCanvas.create_image(0, 0, image=self.photo, anchor=NW)
         
         self.txtCanvas = Canvas(obj.window, height=25, width=150, background="white", highlightthickness=1)
-        self.p_txt = self.txtCanvas.create_text(5, 15, fill="black", text="Pressure:     Bar", font=('Helvetica 14 bold'),anchor=W)
-        self.value_txt = self.txtCanvas.create_text(90, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.p_txt = self.txtCanvas.create_text(5, 15, fill="black", text="Pressure:     Bar", font=('Helvetica 13 bold'),anchor=W)
+        self.value_txt = self.txtCanvas.create_text(90, 15, fill="black", text="0", font=('Helvetica 13 roman'), anchor=W)
         self.txtCanvas.place(x=200, y=150,anchor=NW)
 class Power:
     def __init__(self, obj):
@@ -141,7 +141,7 @@ class Power:
         
         self.pCanvas = Canvas(obj.window, height=25, width=140, background="white", highlightthickness=1)
         self.pCanvas.place(x=271, rely=1, anchor=SW)
-        self.value_txt = self.pCanvas.create_text(70,16, fill="black", text="0 W", font=('Helvetica 14 roman'), anchor=CENTER)
+        self.value_txt = self.pCanvas.create_text(70,16, fill="black", text="0 W", font=('Helvetica 13 roman'), anchor=CENTER)
 class Temperature:
     def __init__(self, obj):
         self.temperatureCanvas = Canvas(obj.window, height=120, width=120, background="white", highlightthickness=1)
@@ -150,13 +150,13 @@ class Temperature:
         self.temperatureCanvas.create_image(0, 0, image=self.photo, anchor=NW)
         
         self.p1Canvas = Canvas(obj.window, height=25, width=120, background="white", highlightthickness=1)
-        self.p1 = self.p1Canvas.create_text(15, 15, fill="black", text="P1:          \N{DEGREE SIGN}C", font=('Helvetica 14 bold'), anchor=W)
-        self.p1_val = self.p1Canvas.create_text(50, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.p1 = self.p1Canvas.create_text(15, 15, fill="black", text="P1:          \N{DEGREE SIGN}C", font=('Helvetica 13 bold'), anchor=W)
+        self.p1_val = self.p1Canvas.create_text(50, 15, fill="black", text="0", font=('Helvetica 13 roman'), anchor=W)
         self.p1Canvas.place(x=150, y=450, anchor=SW)
         
         self.p2Canvas = Canvas(obj.window, height=25, width=120, background="white", highlightthickness=1)
-        self.p2 = self.p2Canvas.create_text(15, 15, fill="black", text="P2:          \N{DEGREE SIGN}C", font=('Helvetica 14 bold'), anchor=W)
-        self.p2_val = self.p2Canvas.create_text(50, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self.p2 = self.p2Canvas.create_text(15, 15, fill="black", text="P2:          \N{DEGREE SIGN}C", font=('Helvetica 13 bold'), anchor=W)
+        self.p2_val = self.p2Canvas.create_text(50, 15, fill="black", text="0", font=('Helvetica 13 roman'), anchor=W)
         self.p2Canvas.place(x=150, rely=1, anchor=SW)
 class Speed:
     def __init__(self, obj):
@@ -167,18 +167,18 @@ class Speed:
         
         self.xCanvas = Canvas(obj.window, height=25, width=160, background="white", highlightthickness=1)
         self.xCanvas.place(x=0, y=140)
-        self._X_ = self.xCanvas.create_text(5,5, fill="black", text="X-Speed:         m/s", font=('Helvetica 14 bold'),anchor=NW)
-        self._X_Speed = self.xCanvas.create_text(90, 5, fill="black", text="0", font=('Helvetica 14 roman'), anchor=NW)
+        self._X_ = self.xCanvas.create_text(5,5, fill="black", text="X-Speed:         m/s", font=('Helvetica 13 bold'),anchor=NW)
+        self._X_Speed = self.xCanvas.create_text(90, 5, fill="black", text="0", font=('Helvetica 13 roman'), anchor=NW)
         
         self.yCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
         self.yCanvas.place(x=0, y=165)
-        self._Y_ = self.yCanvas.create_text(5,5, fill="black", text="Y-Speed:         m/s", font=('Helvetica 14 bold'),anchor=NW)
-        self._Y_Speed = self.yCanvas.create_text(90, 5, fill="black", text="0", font=('Helvetica 14 roman'), anchor=NW)
+        self._Y_ = self.yCanvas.create_text(5,5, fill="black", text="Y-Speed:         m/s", font=('Helvetica 13 bold'),anchor=NW)
+        self._Y_Speed = self.yCanvas.create_text(90, 5, fill="black", text="0", font=('Helvetica 13 roman'), anchor=NW)
         
         self.zCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
         self.zCanvas.place(x=0, y=190)
-        self._Z_ = self.zCanvas.create_text(5,5, fill="black", text="Z-Speed:         m/s", font=('Helvetica 14 bold'),anchor=NW)
-        self._Z_Speed = self.zCanvas.create_text(90, 5, fill="black", text="0", font=('Helvetica 14 roman'), anchor=NW)
+        self._Z_ = self.zCanvas.create_text(5,5, fill="black", text="Z-Speed:         m/s", font=('Helvetica 13 bold'),anchor=NW)
+        self._Z_Speed = self.zCanvas.create_text(90, 5, fill="black", text="0", font=('Helvetica 13 roman'), anchor=NW)
 class Acceleration:
     def __init__(self, obj):
         self.accelerationCanvas = Canvas(obj.window, height=140, width=160, background="white", highlightthickness=1)
@@ -188,18 +188,18 @@ class Acceleration:
         ###
         self.xCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
         self.xCanvas.place(relx=0, y=425, anchor=SW)
-        self._X_ = self.xCanvas.create_text(5,5, fill="black", text="X-Acc:          m/s2", font=('Helvetica 14 bold'),anchor=NW)
-        self._X_Acc = self.xCanvas.create_text(70, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self._X_ = self.xCanvas.create_text(5,5, fill="black", text="X-Acc:          m/s2", font=('Helvetica 13 bold'),anchor=NW)
+        self._X_Acc = self.xCanvas.create_text(70, 15, fill="black", text="0", font=('Helvetica 13 roman'), anchor=W)
         
         self.yCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
         self.yCanvas.place(x=0, y=450, anchor=SW)
-        self._Y_ = self.yCanvas.create_text(5,5, fill="black", text="Y-Acc:          m/s2", font=('Helvetica 14 bold'),anchor=NW)
-        self._Y_Acc = self.yCanvas.create_text(70, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self._Y_ = self.yCanvas.create_text(5,5, fill="black", text="Y-Acc:          m/s2", font=('Helvetica 13 bold'),anchor=NW)
+        self._Y_Acc = self.yCanvas.create_text(70, 15, fill="black", text="0", font=('Helvetica 13 roman'), anchor=W)
         
         self.zCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
         self.zCanvas.place(relx=0, rely=1, anchor=SW)
-        self._Z_ = self.zCanvas.create_text(5,5, fill="black", text="Z-Acc:          m/s2", font=('Helvetica 14 bold'),anchor=NW)
-        self._Z_Acc = self.zCanvas.create_text(70, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self._Z_ = self.zCanvas.create_text(5,5, fill="black", text="Z-Acc:          m/s2", font=('Helvetica 13 bold'),anchor=NW)
+        self._Z_Acc = self.zCanvas.create_text(70, 15, fill="black", text="0", font=('Helvetica 13 roman'), anchor=W)
 class Location:
     def __init__(self, obj):
         self.locationCanvas = Canvas(obj.window, height=150, width=160,background="white", highlightthickness=1)
@@ -209,18 +209,18 @@ class Location:
         
         self.xCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
         self.xCanvas.place(relx=1, y=150,anchor=NE)
-        self._X_ = self.xCanvas.create_text(5, 15, fill="black", text="X-Loc:              m", font=('Helvetica 14 bold'),anchor=W)
-        self._X_Loc = self.xCanvas.create_text(70, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self._X_ = self.xCanvas.create_text(5, 15, fill="black", text="X-Loc:              m", font=('Helvetica 13 bold'),anchor=W)
+        self._X_Loc = self.xCanvas.create_text(70, 15, fill="black", text="0", font=('Helvetica 13 roman'), anchor=W)
         
         self.yCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
         self.yCanvas.place(relx=1, y=175,anchor=NE)
-        self._Y_ = self.yCanvas.create_text(5, 15, fill="black", text="Y-Loc:              cm", font=('Helvetica 14 bold'),anchor=W)
-        self._Y_Loc = self.yCanvas.create_text(70, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self._Y_ = self.yCanvas.create_text(5, 15, fill="black", text="Y-Loc:              cm", font=('Helvetica 13 bold'),anchor=W)
+        self._Y_Loc = self.yCanvas.create_text(70, 15, fill="black", text="0", font=('Helvetica 13 roman'), anchor=W)
         
         self.zCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
         self.zCanvas.place(relx=1, y=200,anchor=NE)
-        self._Z_ = self.zCanvas.create_text(5, 15, fill="black", text="Z-Loc:              cm", font=('Helvetica 14 bold'),anchor=W)
-        self._Z_Loc = self.zCanvas.create_text(70, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self._Z_ = self.zCanvas.create_text(5, 15, fill="black", text="Z-Loc:              cm", font=('Helvetica 13 bold'),anchor=W)
+        self._Z_Loc = self.zCanvas.create_text(70, 15, fill="black", text="0", font=('Helvetica 13 roman'), anchor=W)
 class Maneuver:
     def __init__(self, obj):
         self.maneuverCanvas = Canvas(obj.window, height=160, width=160,background="white", highlightthickness=1)
@@ -233,91 +233,91 @@ class Maneuver:
         #roll, pitch ve yaw
         self.yawCanvas = Canvas(obj.window, height=25, width=160, background="white", highlightthickness=1)
         self.yawCanvas.place(relx=1, y=425, anchor=SE)
-        self._Yaw_ = self.yawCanvas.create_text(17, 15, fill="black", text=" Yaw:             \N{DEGREE SIGN}", font=('Helvetica 14 bold'),anchor=W)
-        self._Yaw_Deg = self.yawCanvas.create_text(80, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self._Yaw_ = self.yawCanvas.create_text(17, 15, fill="black", text=" Yaw:             \N{DEGREE SIGN}", font=('Helvetica 13 bold'),anchor=W)
+        self._Yaw_Deg = self.yawCanvas.create_text(80, 15, fill="black", text="0", font=('Helvetica 13 roman'), anchor=W)
                 
         self.rollCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
         self.rollCanvas.place(relx=1, y=450, anchor=SE)
-        self._Roll_ = self.rollCanvas.create_text(15, 15, fill="black", text="  Roll:             \N{DEGREE SIGN}", font=('Helvetica 14 bold'),anchor=W)
-        self._Roll_Deg = self.rollCanvas.create_text(80, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self._Roll_ = self.rollCanvas.create_text(15, 15, fill="black", text="  Roll:             \N{DEGREE SIGN}", font=('Helvetica 13 bold'),anchor=W)
+        self._Roll_Deg = self.rollCanvas.create_text(80, 15, fill="black", text="0", font=('Helvetica 13 roman'), anchor=W)
         
         self.pitchCanvas = Canvas(obj.window, height=25, width=160,background="white", highlightthickness=1)
         self.pitchCanvas.place(relx=1, rely=1, anchor=SE)
-        self._Pitch_ = self.pitchCanvas.create_text(15, 15, fill="black", text="Pitch:             \N{DEGREE SIGN}", font=('Helvetica 14 bold'),anchor=W)
-        self._Pitch_Deg = self.pitchCanvas.create_text(80, 15, fill="black", text="0", font=('Helvetica 14 roman'), anchor=W)
+        self._Pitch_ = self.pitchCanvas.create_text(15, 15, fill="black", text="Pitch:             \N{DEGREE SIGN}", font=('Helvetica 13 bold'),anchor=W)
+        self._Pitch_Deg = self.pitchCanvas.create_text(80, 15, fill="black", text="0", font=('Helvetica 13 roman'), anchor=W)
   
 def updatePressure(obj, value):
     obj.txtCanvas.delete(obj.value_txt)
-    obj.value_txt = obj.txtCanvas.create_text(90, 15, fill="black", text=value[8], font=('Helvetica 14 roman'), anchor=W)
+    obj.value_txt = obj.txtCanvas.create_text(90, 15, fill="black", text=value[8], font=('Helvetica 13 roman'), anchor=W)
 def changePressure(obj):
     updatePressure(obj.pressure, obj.data)
     obj.window.update()
 
 def updatePower(obj, value):
     obj.pCanvas.delete(obj.value_txt)
-    obj.value_txt = obj.pCanvas.create_text(70, 16, fill="black", text=value+" W", font=('Helvetica 14 roman'), anchor=CENTER)
+    obj.value_txt = obj.pCanvas.create_text(70, 16, fill="black", text=value+" W", font=('Helvetica 13 roman'), anchor=CENTER)
 def changePower(obj):
     updatePower(obj.power, obj.data[12])
     obj.window.update()
 
 def updateLocation(obj, value):
     obj.xCanvas.delete(obj._X_Loc)
-    obj._X_Loc = obj.xCanvas.create_text(70, 15, fill="black", text=value[9], font=('Helvetica 14 roman'), anchor=W)
+    obj._X_Loc = obj.xCanvas.create_text(70, 15, fill="black", text=value[9], font=('Helvetica 13 roman'), anchor=W)
 
     obj.yCanvas.delete(obj._Y_Loc)
-    obj._Y_Loc = obj.yCanvas.create_text(70, 15, fill="black", text=value[10], font=('Helvetica 14 roman'), anchor=W)
+    obj._Y_Loc = obj.yCanvas.create_text(70, 15, fill="black", text=value[10], font=('Helvetica 13 roman'), anchor=W)
 
     obj.zCanvas.delete(obj._Z_Loc)
-    obj._Z_Loc = obj.zCanvas.create_text(70, 15, fill="black", text=value[11], font=('Helvetica 14 roman'), anchor=W)
+    obj._Z_Loc = obj.zCanvas.create_text(70, 15, fill="black", text=value[11], font=('Helvetica 13 roman'), anchor=W)
 def changeLocation(obj):
     updateLocation(obj.location, [*obj.data])
     obj.window.update()
 
 def updateAcceleration(obj, value):
     obj.xCanvas.delete(obj._X_Acc)
-    obj._X_Acc = obj.xCanvas.create_text(70, 15, fill="black", text=value[3], font=('Helvetica 14 roman'), anchor=W)
+    obj._X_Acc = obj.xCanvas.create_text(70, 15, fill="black", text=value[3], font=('Helvetica 13 roman'), anchor=W)
 
     obj.yCanvas.delete(obj._Y_Acc)
-    obj._Y_Acc = obj.yCanvas.create_text(70, 15, fill="black", text=value[4], font=('Helvetica 14 roman'), anchor=W)
+    obj._Y_Acc = obj.yCanvas.create_text(70, 15, fill="black", text=value[4], font=('Helvetica 13 roman'), anchor=W)
 
     obj.zCanvas.delete(obj._Z_Acc)
-    obj._Z_Acc = obj.zCanvas.create_text(70, 15, fill="black", text=value[5], font=('Helvetica 14 roman'), anchor=W)
+    obj._Z_Acc = obj.zCanvas.create_text(70, 15, fill="black", text=value[5], font=('Helvetica 13 roman'), anchor=W)
 def changeAcceleration(obj):
     updateAcceleration(obj.acc, [*obj.data])
     obj.window.update()
 
 def updateSpeed(obj, value):
     obj.xCanvas.delete(obj._X_Speed)
-    obj._X_Speed = obj.xCanvas.create_text(90, 5, fill="black", text=value[0], font=('Helvetica 14 roman'), anchor=NW)
+    obj._X_Speed = obj.xCanvas.create_text(90, 5, fill="black", text=value[0], font=('Helvetica 13 roman'), anchor=NW)
 
     obj.yCanvas.delete(obj._Y_Speed)
-    obj._Y_Speed = obj.yCanvas.create_text(90, 5, fill="black", text=value[1], font=('Helvetica 14 roman'), anchor=NW)
+    obj._Y_Speed = obj.yCanvas.create_text(90, 5, fill="black", text=value[1], font=('Helvetica 13 roman'), anchor=NW)
 
     obj.zCanvas.delete(obj._Z_Speed)
-    obj._Z_Speed = obj.zCanvas.create_text(90, 5, fill="black", text=value[2], font=('Helvetica 14 roman'), anchor=NW)
+    obj._Z_Speed = obj.zCanvas.create_text(90, 5, fill="black", text=value[2], font=('Helvetica 13 roman'), anchor=NW)
 def changeSpeed(obj):
     updateSpeed(obj.speed, [*obj.data])
     obj.window.update()
 
 def updateTemperature(obj, value):
     obj.p1Canvas.delete(obj.p1_val)
-    obj.p1_val = obj.p1Canvas.create_text(50, 15, fill="black", text=value[6], font=('Helvetica 14 roman'), anchor=W)
+    obj.p1_val = obj.p1Canvas.create_text(50, 15, fill="black", text=value[6], font=('Helvetica 13 roman'), anchor=W)
 
     obj.p2Canvas.delete(obj.p2_val)
-    obj.p2_val = obj.p2Canvas.create_text(50, 15, fill="black", text=value[7], font=('Helvetica 14 roman'), anchor=W)
+    obj.p2_val = obj.p2Canvas.create_text(50, 15, fill="black", text=value[7], font=('Helvetica 13 roman'), anchor=W)
 def changeTemperature(obj):
     updateTemperature(obj.temperature, [*obj.data])
     obj.window.update()
 
 def updateManeuver(obj, value):
     obj.yawCanvas.delete(obj._Yaw_Deg)
-    obj._Yaw_Deg = obj.yawCanvas.create_text(80, 15, fill="black", text=value[13], font=('Helvetica 14 roman'), anchor=W)
+    obj._Yaw_Deg = obj.yawCanvas.create_text(80, 15, fill="black", text=value[13], font=('Helvetica 13 roman'), anchor=W)
 
     obj.rollCanvas.delete(obj._Roll_Deg)
-    obj._Roll_Deg = obj.rollCanvas.create_text(80, 15, fill="black", text=value[14], font=('Helvetica 14 roman'), anchor=W)
+    obj._Roll_Deg = obj.rollCanvas.create_text(80, 15, fill="black", text=value[14], font=('Helvetica 13 roman'), anchor=W)
 
     obj.pitchCanvas.delete(obj._Pitch_Deg)
-    obj._Pitch_Deg = obj.pitchCanvas.create_text(80, 15, fill="black", text=value[15], font=('Helvetica 14 roman'), anchor=W)
+    obj._Pitch_Deg = obj.pitchCanvas.create_text(80, 15, fill="black", text=value[15], font=('Helvetica 13 roman'), anchor=W)
 def changeManeuver(obj):
     updateManeuver(obj.maneuver, [*obj.data])
     obj.window.update()
